@@ -2,7 +2,6 @@
 interface DeleteButtonProps {
     id: number;
 }
-
 export default function DeleteButton({ id }: DeleteButtonProps) {
     async function DeleteUser() {
         console.log(id)

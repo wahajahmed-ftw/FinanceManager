@@ -1,5 +1,11 @@
+import IncomeForm from "./incomeform";
+import IncomeTable from "./incometable";
+
 export default function Income() {
     return (
-        <div className="flex justify-center items-center h-screen">Income Page</div>
+        <div>Income Page
+        <IncomeForm/>
+        <IncomeTable/>
+        </div>
     );
 }
