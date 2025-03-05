@@ -1,0 +1,45 @@
+Color Palette:
+
+Primary Blue Colors:
+
+
+bg-blue-600: Main blue for buttons and accents
+dark:bg-blue-500: Dark mode variant of the primary blue
+text-blue-600: Blue used for icons
+
+
+Background Colors:
+
+
+bg-white/80: Light mode background with slight transparency
+dark:bg-gray-800/80: Dark mode background with slight transparency
+backdrop-blur-lg: Adds a blur effect to backgrounds
+bg-black/30: Overlay background with transparency
+
+
+Text Colors:
+
+
+text-gray-800 (light mode): Main text color
+dark:text-white (dark mode): White text for dark backgrounds
+text-gray-600 and dark:text-gray-300: Secondary text and icon colors
+text-green-600: Success message color
+text-red-600: Error message color
+
+
+Border and Accent Colors:
+
+
+border-gray-300 (light mode)
+dark:border-gray-600 (dark mode)
+text-gray-500: Muted text and icon colors
+
+Theme Characteristics:
+
+Supports both light and dark modes
+Uses transparency (opacity) for backgrounds
+Utilizes a blue color scheme as the primary accent color
+Softens colors with blur and transparency effects
+Provides clear visual hierarchy with color variations
+
+The component uses Tailwind CSS classes to create a modern, responsive design with smooth color transitions between light and dark modes.

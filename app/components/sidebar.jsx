@@ -48,7 +48,7 @@ const Sidebar = () => {
               <Link key={item.name} href={item.path}>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-3 p-3 rounded-md cursor-pointer transition bg-gray-800 hover:bg-gray-700"
+                  className={`flex items-center gap-3  ${isOpen ? "justify-start pl-2 h-10" : "justify-center  h-10"}  rounded-md cursor-pointer transition bg-gray-800 hover:bg-gray-700`}
                 >
                   <item.icon size={20} />
                   {isOpen && <span className="text-sm">{item.name}</span>}
@@ -61,7 +61,7 @@ const Sidebar = () => {
         {/* User Button at the Bottom */}
         <SignedIn>
           <div className="mt-auto flex flex-col items-center justify-center p-3 border-t border-gray-700">
-            <UserButton showName />
+            { <UserButton />}
           </div>
         </SignedIn>
       </motion.div>
@@ -71,7 +71,6 @@ const Sidebar = () => {
 
 // Sidebar Menu Items with Links
 const menuItems = [
-  { name: "Home", icon: Home, path: "/" },
   { name: "Dashboard", icon: User, path: "/dashboard" },
   { name: "Income", icon: User, path: "/dashboard/income" },
   { name: "Expenses", icon: User, path: "/dashboard/expenses" },

@@ -1,8 +1,12 @@
 import { div } from "motion/react-client";
 import Image from "next/image";
+import { GlobeDemo } from "./components/HomePage/globe";
 export default function Home() {
   return (
-    <div className="flex justify-center items-center h-screen">Hello This is home page</div>
+    <div>
+        Hello This is home page
+        <GlobeDemo />  
+    </div>
   );
 }
 

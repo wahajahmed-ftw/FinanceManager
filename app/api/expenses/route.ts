@@ -12,7 +12,7 @@ export async function GET() {
 
     const expenses = await prisma.expenses.findMany({
       where: { clerkId: userId }, // Filter by the authenticated user's Clerk ID
-      orderBy: { date: "desc" }, // Latest expenses first
+      orderBy: { date: "asc" }, // Latest expenses first
     });
 
     return NextResponse.json({ success: true, data: expenses });

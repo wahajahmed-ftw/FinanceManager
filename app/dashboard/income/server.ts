@@ -27,10 +27,11 @@ export async function addIncome(formData: FormData) {
         amount,
       },
     });
-    revalidatePath("/dashboard/income");
+    // Revalidate the path so that the new item is visible
     return { success: true, message: "Income added successfully!" };
   } catch (error) {
     console.error("Error adding income:", error);
     return { success: false, error: "Database error." };
   }
 }
+
