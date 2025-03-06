@@ -5,6 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
 import { addIncome } from "./server"; // Assuming server action exists
 import { useRouter } from "next/router";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function IncomeFormPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,17 +62,25 @@ export default function IncomeFormPopup() {
   return (
     <>
       {/* Floating Add Button */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-blue-600 text-white 
-          w-16 h-16 rounded-full flex items-center justify-center 
-          shadow-2xl hover:bg-blue-700 transition-colors 
-          dark:bg-blue-500 dark:hover:bg-blue-600"
-      >
-        <Plus size={32} />
-      </motion.button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-6 right-6 bg-blue-600 text-white 
+            w-16 h-16 rounded-full flex items-center justify-center 
+            shadow-2xl hover:bg-blue-700 transition-colors 
+            dark:bg-blue-500 dark:hover:bg-blue-600"
+            >
+            <Plus size={32} />
+          </motion.button>
+          </TooltipTrigger>
+       <TooltipContent>Add Income</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
 
       {/* Popup Overlay */}
       <AnimatePresence>

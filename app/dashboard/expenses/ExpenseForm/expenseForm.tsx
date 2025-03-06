@@ -4,7 +4,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
 import { addExpense } from "../server";
-
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 export default function ExpenseFormPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -67,17 +72,26 @@ export default function ExpenseFormPopup() {
   return (
     <>
       {/* Floating Add Button */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-red-600 text-white 
-          w-16 h-16 rounded-full flex items-center justify-center 
-          shadow-2xl hover:bg-red-700 transition-colors 
-          dark:bg-red-500 dark:hover:bg-red-600"
-      >
-        <Plus size={32}  />
-      </motion.button>
+      <TooltipProvider>
+
+          <Tooltip>
+
+            <TooltipTrigger asChild>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsOpen(true)}
+                  className="fixed bottom-6 right-6 bg-red-600 text-white 
+                  w-16 h-16 rounded-full flex items-center justify-center 
+                  shadow-2xl hover:bg-red-700 transition-colors 
+                  dark:bg-red-500 dark:hover:bg-red-600"
+                  >
+                  <Plus size={32}  />
+                </motion.button>
+              </TooltipTrigger>
+            <TooltipContent>Add Expense</TooltipContent>
+            </Tooltip>
+      </TooltipProvider>
 
       {/* Popup Overlay */}
       <AnimatePresence>

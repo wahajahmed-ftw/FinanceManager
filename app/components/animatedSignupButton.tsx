@@ -5,6 +5,8 @@ import { SignIn } from "@clerk/nextjs";
 import { X } from "lucide-react";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { MagicCard } from "@/components/magicui/magic-card";
+import { createPortal } from "react-dom";
+
 const AnimatedSignInButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -29,16 +31,23 @@ const AnimatedSignInButton = () => {
     <>  
       {/* Animated Sign-In Button */}
       <motion.button
-        whileHover={{ scale: 1.05, backgroundColor: "#4b5563" }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="bg-gray-800 text-white font-bold py-2 px-4 rounded-md shadow-md transition-all"
+        // whileHover={{ scale: 1.05, backgroundColor: "#4b5563" }}
+        // whileTap={{ scale: 0.95 }}
+        // initial={{ opacity: 0, y: -10 }}
+        // animate={{ opacity: 1, y: 0 }}
+        // transition={{ duration: 0.3, ease: "easeInOut" }}
+        // className="bg-gray-800 text-white font-bold py-2 px-4 rounded-md shadow-md transition-all"
+        className="inline-flex items-center justify-center px-3 sm:px-5 py-2.5 text-sm sm:text-base font-semibold transition-all duration-300 text-white bg-white/20 hover:bg-white/40 focus:bg-white/40 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: "0 10px 25px -5px rgba(40, 204, 157, 0.3)"
+        }}
+        role="button"
         onClick={() => setIsOpen(true)}
       >
         Sign In
       </motion.button>
+      
 
       {/* Animated Modal */}
       <AnimatePresence>
