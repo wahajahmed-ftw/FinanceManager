@@ -14,6 +14,7 @@ import {
   Sun, 
   Moon 
 } from "lucide-react";
+import ThemeToggle from "../components/themeSelector";
 
 // Define strict types
 interface FinanceData {
@@ -166,6 +167,7 @@ export default function FinanceDashboard() {
 
   return (
     <div className={`min-h-screen p-6 transition-colors duration-300 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white `}>
+      <ThemeToggle/>
       {/* Theme Toggle Button
       <motion.button
         whileHover={{ scale: 1.1 }}

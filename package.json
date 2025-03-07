@@ -11,7 +11,7 @@
   "dependencies": {
     "@ag-grid-community/client-side-row-model": "^32.3.3",
     "@ag-grid-community/styles": "^33.0.3",
-    "@clerk/nextjs": "^6.12.1",
+    "@clerk/nextjs": "^6.12.4",
     "@headlessui/react": "^2.2.0",
     "@heroui/scroll-shadow": "^2.3.10",
     "@lottiefiles/dotlottie-react": "^0.13.0",

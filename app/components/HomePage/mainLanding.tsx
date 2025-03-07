@@ -2,11 +2,14 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import AnimatedSignInButton from '../animatedSignupButton';
+import { useInView } from "react-intersection-observer";  
 // Import the Card components from your UI library
 // If you're using shadcn/ui, the import would look like this:
 // import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 export function MainLanding() {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
   // Animation variants for elements appearing from bottom
   const fromBottomVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -60,7 +63,7 @@ export function MainLanding() {
   };
 
   return (
-    <div className="bg-gradient-to-b z-20 from-[#101212] relative to-[#08201D] overflow-hidden">
+    <div className="relative bg-[var(--background)] text-[var(--foreground)] overflow-hidden">
       <header className="absolute inset-x-0 top-0 z-10 w-full">
         <div className="px-4 mx-auto sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -86,7 +89,7 @@ export function MainLanding() {
                   key={index}
                   href="#" 
                   title="" 
-                  className="text-base text-white transition-all duration-300 hover:text-opacity-80 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-300 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300" 
+                  className="text-base text-[var(--foreground)] transition-all duration-300 hover:text-opacity-80 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--success)] after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300" 
                   variants={textPopVariants}
                 >
                   {item}
@@ -100,32 +103,12 @@ export function MainLanding() {
               animate="visible"
               variants={containerVariants}
             >
-              {/* <motion.a 
-                href="#" 
-                title="" 
-                className="hidden text-base text-white transition-all duration-300 lg:inline-flex hover:text-opacity-80 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-300 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-                variants={textPopVariants}
-              >
-                Log in
-              </motion.a> */}
-               <AnimatedSignInButton/>
-{/* 
-              <motion.div 
-                className="inline-flex items-center justify-center px-3 sm:px-5 py-2.5 text-sm sm:text-base font-semibold transition-all duration-300 text-white bg-white/20 hover:bg-white/40 focus:bg-white/40 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-500/20"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px -5px rgba(40, 204, 157, 0.3)"
-                }}
-                variants={textPopVariants}
-                role="button"
-              >
-               <AnimatedSignInButton/>
-              </motion.div> */}
+              <AnimatedSignInButton/>
             </motion.div>
 
             <motion.button 
               type="button" 
-              className="inline-flex p-2 ml-1 text-white transition-all duration-200 rounded-md sm:ml-4 lg:hidden focus:bg-gray-800 hover:bg-gray-800"
+              className="inline-flex p-2 ml-1 text-[var(--foreground)] transition-all duration-200 rounded-md sm:ml-4 lg:hidden focus:bg-[var(--muted-foreground)] hover:bg-[var(--muted-foreground)]"
               variants={textPopVariants}
               initial="hidden"
               animate="visible"
@@ -174,7 +157,7 @@ export function MainLanding() {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-white"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--success)] to-[var(--foreground)]"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ 
                   opacity: 1, 
@@ -191,29 +174,29 @@ export function MainLanding() {
             </motion.h1>
             
             <motion.p 
-              className="mt-5 text-base text-white sm:text-xl"
+              className="mt-5 text-base text-[var(--foreground)] sm:text-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
-No more stress managing your expenses and savings. Use Postcrats Finance Manager to track your finances effortlessly and make smarter financial decisions.
+              No more stress managing your expenses and savings. Use Postcrats Finance Manager to track your finances effortlessly and make smarter financial decisions.
             </motion.p>
 
             <motion.a 
               href="#" 
               title="" 
-              className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-white transition-all duration-300 bg-blue-600 rounded-lg sm:mt-16 hover:bg-blue-700 focus:bg-blue-700 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20" 
+              className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-[var(--primary-foreground)] transition-all duration-300 bg-[var(--primary)] rounded-lg sm:mt-16 hover:bg-[var(--button-primary-hover)] focus:bg-[var(--button-primary-hover)] hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary)]/20" 
               role="button"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)"
+                boxShadow: "0 10px 25px -5px rgba(var(--primary), 0.5)"
               }}
               whileTap={{ scale: 0.98 }}
             >
-             Learn More
+              Learn More
               <motion.svg 
                 className="w-6 h-6 ml-8 -mr-2" 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -258,7 +241,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                 >
                   <path
                     d="M25.1667 14.187H20.3333C17.6637 14.187 15.5 16.3507 15.5 19.0203V19.8258C15.5 19.8258 18.0174 20.6314 22.75 20.6314C27.4826 20.6314 30 19.8258 30 19.8258V19.0203C30 16.3507 27.8363 14.187 25.1667 14.187Z"
-                    stroke="#28CC9D"
+                    stroke="var(--success)"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinecap="round"
@@ -266,7 +249,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                   <path
                     d="M18.7227 6.9369C18.7227 4.71276 20.5263 2.90912 22.7504 2.90912C24.9746 2.90912 26.7782 4.71276 26.7782 6.9369C26.7782 9.16104 24.9746 11.7702 22.7504 11.7702C20.5263 11.7702 18.7227 9.16104 18.7227 6.9369Z"
-                    stroke="#28CC9D"
+                    stroke="var(--success)"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinecap="round"
@@ -275,7 +258,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   <path
                     d="M13.2231 15.8512H7.11157C3.73595 15.8512 1 18.5871 1 21.9628V22.9814C1 22.9814 4.18311 24 10.1674 24C16.1516 24 19.3347 22.9814 19.3347 22.9814V21.9628C19.3347 18.5871 16.5988 15.8512 13.2231 15.8512Z"
                     fill="#0B1715"
-                    stroke="white"
+                    stroke="var(--primary-foreground)"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinecap="round"
@@ -284,7 +267,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   <path
                     d="M5.07422 6.68386C5.07422 3.87152 7.35485 1.59088 10.1672 1.59088C12.9795 1.59088 15.2602 3.87152 15.2602 6.68386C15.2602 9.4962 12.9795 12.7954 10.1672 12.7954C7.35485 12.7954 5.07422 9.4962 5.07422 6.68386Z"
                     fill="#0B1715"
-                    stroke="white"
+                    stroke="var(--primary-foreground)"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinecap="round"
@@ -292,7 +275,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                 </motion.svg>
                 <motion.p 
-                  className="ml-3 text-sm text-white"
+                  className="ml-3 text-sm text-[var(--foreground)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -319,7 +302,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                 >
                   <path
                     d="M19.8335 21.9166H3.16683C2.6143 21.9166 2.08439 21.6972 1.69369 21.3065C1.30299 20.9158 1.0835 20.3858 1.0835 19.8333V3.16665C1.0835 2.61411 1.30299 2.08421 1.69369 1.69351C2.08439 1.30281 2.6143 1.08331 3.16683 1.08331H19.8335C20.386 1.08331 20.9159 1.30281 21.3066 1.69351C21.6973 2.08421 21.9168 2.61411 21.9168 3.16665V19.8333C21.9168 20.3858 21.6973 20.9158 21.3066 21.3065C20.9159 21.6972 20.386 21.9166 19.8335 21.9166Z"
-                    stroke="white"
+                    stroke="var(--primary-foreground)"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinecap="round"
@@ -327,7 +310,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                   <motion.path 
                     d="M7 12.6667L9.25 15L16 8" 
-                    stroke="#28CC9D" 
+                    stroke="var(--success)" 
                     strokeWidth="1.5" 
                     strokeMiterlimit="10" 
                     strokeLinecap="round" 
@@ -339,7 +322,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                 </motion.svg>
                 <motion.p 
-                  className="ml-3 text-sm text-white"
+                  className="ml-3 text-sm text-[var(--foreground)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -366,7 +349,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                 >
                   <path 
                     d="M17 11H3C1.89543 11 1 11.8954 1 13V21C1 22.1046 1.89543 23 3 23H17C18.1046 23 19 22.1046 19 21V13C19 11.8954 18.1046 11 17 11Z" 
-                    stroke="white" 
+                    stroke="var(--primary-foreground)" 
                     strokeWidth="1.5" 
                     strokeMiterlimit="10" 
                     strokeLinecap="round" 
@@ -374,7 +357,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                  <motion.path 
                     d="M10 19C11.1046 19 12 18.1046 12 17C12 15.8954 11.1046 15 10 15C8.89543 15 8 15.8954 8 17C8 18.1046 8.89543 19 10 19Z" 
-                    stroke="#28CC9D" 
+                    stroke="var(--success)" 
                     strokeWidth="1.5" 
                     strokeMiterlimit="10" 
                     strokeLinecap="round" 
@@ -385,7 +368,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                   <path
                     d="M15 7V6C15.0131 4.68724 14.5042 3.42303 13.5853 2.48539C12.6664 1.54776 11.4128 1.01346 10.1 1H10C8.68724 0.986939 7.42303 1.4958 6.48539 2.41469C5.54776 3.33357 5.01346 4.58724 5 5.9V7"
-                    stroke="#28CC9D"
+                    stroke="var(--success)"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinecap="round"
@@ -393,7 +376,7 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
                   />
                 </motion.svg>
                 <motion.p 
-                  className="ml-3 text-sm text-white"
+                  className="ml-3 text-sm text-[var(--foreground)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -408,4 +391,3 @@ No more stress managing your expenses and savings. Use Postcrats Finance Manager
     </div>
   );
 }
-

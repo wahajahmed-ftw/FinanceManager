@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "framer-motion";
+import { FaTwitter, FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 
@@ -58,30 +61,36 @@ const ReviewCard = ({
     <figure
       className={cn(
         "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+        "border-[var(--border)] bg-[var(--background)] hover:bg-[var(--card-bg-hover)] text-[var(--foreground)]"
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
+        <img
+          className="rounded-full border border-[var(--border)]"
+          width="32"
+          height="32"
+          alt=""
+          src={img}
+        />
         <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
+          <figcaption className="text-sm font-medium text-[var(--foreground)]">
             {name}
           </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
+          <p className="text-xs font-medium text-[var(--muted-foreground)]">
+            {username}
+          </p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
+      <blockquote className="mt-2 text-sm text-[var(--muted-foreground)]">
+        {body}
+      </blockquote>
     </figure>
   );
 };
 
 export function MarqueeDemo() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-      {" "}
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-[var(--background)] py-10">
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />
@@ -92,10 +101,10 @@ export function MarqueeDemo() {
           <ReviewCard key={review.username} {...review} />
         ))}
       </Marquee>
-      {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div> */}
     </div>
   );
 }
 
 export default MarqueeDemo;
+
+
