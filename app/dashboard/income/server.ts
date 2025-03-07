@@ -34,4 +34,3 @@ export async function addIncome(formData: FormData) {
     return { success: false, error: "Database error." };
   }
 }
-

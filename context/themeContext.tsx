@@ -40,7 +40,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   // Function to toggle theme with ripple effect
-  const toggleTheme = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const toggleTheme = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     const { clientX, clientY } = event; // Get click position
 
     setRipple({ x: clientX, y: clientY });

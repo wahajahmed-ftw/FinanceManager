@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: 'Poppins','Manrope', sans-serif;
-  --font-mono: var(--font-geist-mono); 
+  --font-sans: "Poppins", "Manrope", sans-serif;
+  --font-mono: var(--font-geist-mono);
 }
-body{
+body {
   font-family: var(--font-sans);
 }
 
 :root {
   --background: rgb(245, 247, 250);
   --foreground: rgb(30, 30, 40);
-  
+
   --primary: rgb(0, 123, 255);
   --primary-foreground: rgb(255, 255, 255);
 
@@ -51,7 +51,7 @@ body{
   --button-danger-hover: rgb(200, 45, 60);
 
   --card-bg: rgb(220, 225, 230); /* Soft muted grayish-blue */
-  --card-bg-hover: rgb(200, 210, 220); 
+  --card-bg-hover: rgb(200, 210, 220);
 
   --color-bg-start: var(--background);
   --color-bg-middle: rgb(230, 235, 240); /* Light transition */
@@ -163,7 +163,7 @@ body{
   --button-danger-hover: rgb(140, 50, 50);
 
   --card-bg: rgb(100, 100, 100); /* Neutral mid-tone gray */
-  --card-bg-hover: rgb(120, 120, 120); 
+  --card-bg-hover: rgb(120, 120, 120);
 
   --color-bg-start: var(--background);
   --color-bg-middle: rgb(180, 180, 180); /* Mid-tone for smooth transition */
@@ -178,9 +178,6 @@ body{
   --color-select-bg: var(--muted);
   --color-border: var(--border);
 }
-
-
-
 
 /* Animation Keyframes */
 @keyframes marquee {

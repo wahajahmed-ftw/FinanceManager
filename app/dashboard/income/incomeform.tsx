@@ -10,7 +10,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export default function IncomeFormPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +22,9 @@ export default function IncomeFormPopup() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     setIncomeData({ ...incomeData, [e.target.name]: e.target.value });
   };
 
@@ -43,7 +44,7 @@ export default function IncomeFormPopup() {
       if (result.success) {
         setMessage("Income added successfully!");
         setIncomeData({ source: "Job", date: "", amount: "" });
-        
+
         // Optional: Close popup after successful submission
         setTimeout(() => {
           setIsOpen(false);
@@ -62,26 +63,25 @@ export default function IncomeFormPopup() {
   return (
     <>
       {/* Floating Add Button */}
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(true)}
+              className="fixed bottom-6 right-6 
               bg-[var(--primary)] text-var[(--primary-foreground)] 
               w-16 h-16 rounded-full flex items-center justify-center 
               shadow-2xl hover:bg-var[(--button-danger-hover)] 
               transition-colors"
             >
-            <Plus size={32} />
-          </motion.button>
+              <Plus size={32} />
+            </motion.button>
           </TooltipTrigger>
-       <TooltipContent>Add Income</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+          <TooltipContent>Add Income</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
       {/* Popup Overlay */}
       <AnimatePresence>
@@ -99,10 +99,10 @@ export default function IncomeFormPopup() {
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 20 
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
               }}
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-md bg-[var(--card-bg)]/80 
@@ -119,9 +119,11 @@ export default function IncomeFormPopup() {
               </button>
 
               {/* Form Title */}
-              <h2 className="text-2xl font-bold mb-6 text-center 
+              <h2
+                className="text-2xl font-bold mb-6 text-center 
                 text-[var(--foreground)] flex items-center 
-                justify-center gap-2">
+                justify-center gap-2"
+              >
                 <DollarSign className="text-[var(--primary)]" />
                 Add Income
               </h2>
@@ -152,9 +154,11 @@ export default function IncomeFormPopup() {
                       <option value="Investment">Investment</option>
                       <option value="Other">Other</option>
                     </select>
-                    <div className="pointer-events-none absolute 
+                    <div
+                      className="pointer-events-none absolute 
                       inset-y-0 right-0 flex items-center px-3 
-                      text-[var(--muted-foreground)]">
+                      text-[var(--muted-foreground)]"
+                    >
                       <Layers size={20} />
                     </div>
                   </div>
@@ -180,9 +184,11 @@ export default function IncomeFormPopup() {
                         focus:ring-2 focus:ring-[var(--ring)] 
                         transition-all"
                     />
-                    <div className="pointer-events-none absolute 
+                    <div
+                      className="pointer-events-none absolute 
                       inset-y-0 right-0 flex items-center px-3 
-                      text-[var(--muted-foreground)]">
+                      text-[var(--muted-foreground)]"
+                    >
                       <Calendar size={20} />
                     </div>
                   </div>
@@ -211,9 +217,11 @@ export default function IncomeFormPopup() {
                         focus:ring-2 focus:ring-[var(--ring)] 
                         transition-all"
                     />
-                    <div className="pointer-events-none absolute 
+                    <div
+                      className="pointer-events-none absolute 
                       inset-y-0 left-0 flex items-center px-3 
-                      text-[var(--muted-foreground)]">
+                      text-[var(--muted-foreground)]"
+                    >
                       <DollarSign size={20} />
                     </div>
                   </div>
@@ -251,8 +259,8 @@ export default function IncomeFormPopup() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       className={`text-center mt-2 ${
-                        message.includes("successfully") 
-                          ? "text-[var(--success)]" 
+                        message.includes("successfully")
+                          ? "text-[var(--success)]"
                           : "text-[var(--danger)]"
                       }`}
                     >
@@ -265,7 +273,6 @@ export default function IncomeFormPopup() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </>
   );
 }

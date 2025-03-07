@@ -15,7 +15,6 @@ export async function addExpense(formData: FormData) {
   const amount = parseFloat(formData.get("amount") as string);
   const date = formData.get("date") as string;
 
-
   if (!category || !subCategory || isNaN(amount)) {
     return { success: false, error: "Invalid input data." };
   }

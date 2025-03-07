@@ -7,7 +7,10 @@ export async function GET() {
     const { userId } = await auth(); // Get the Clerk User ID
 
     if (!userId) {
-      return NextResponse.json({ success: false, error: "User not authenticated." }, { status: 401 });
+      return NextResponse.json(
+        { success: false, error: "User not authenticated." },
+        { status: 401 },
+      );
     }
 
     const expenses = await prisma.expenses.findMany({
@@ -18,6 +21,9 @@ export async function GET() {
     return NextResponse.json({ success: true, data: expenses });
   } catch (error) {
     console.error("Error fetching expenses:", error);
-    return NextResponse.json({ success: false, error: "Failed to fetch expenses." }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch expenses." },
+      { status: 500 },
+    );
   }
 }

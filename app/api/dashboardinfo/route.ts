@@ -5,7 +5,9 @@ export async function GET() {
   try {
     const expenses = await prisma.expenses.findMany(); // Fetch all expenses
 
-    const totalIncome = await prisma.income.aggregate({ _sum: { amount: true } });
+    const totalIncome = await prisma.income.aggregate({
+      _sum: { amount: true },
+    });
     const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
 
     // Group expenses by category
@@ -13,10 +15,12 @@ export async function GET() {
     const subcategoryExpenses: Record<string, number> = {};
 
     expenses.forEach((expense) => {
-      if (!categoryExpenses[expense.category]) categoryExpenses[expense.category] = 0;
+      if (!categoryExpenses[expense.category])
+        categoryExpenses[expense.category] = 0;
       categoryExpenses[expense.category] += expense.amount;
 
-      if (!subcategoryExpenses[expense.subCategory]) subcategoryExpenses[expense.subCategory] = 0;
+      if (!subcategoryExpenses[expense.subCategory])
+        subcategoryExpenses[expense.subCategory] = 0;
       subcategoryExpenses[expense.subCategory] += expense.amount;
     });
 
@@ -31,6 +35,9 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Error fetching expenses:", error);
-    return NextResponse.json({ success: false, error: "Failed to fetch data" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch data" },
+      { status: 500 },
+    );
   }
 }

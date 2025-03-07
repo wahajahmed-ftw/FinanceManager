@@ -55,16 +55,15 @@ const Sidebar = () => {
                   {isOpen && <span className="text-sm">{item.name}</span>}
                 </motion.div>
               </Link>
-            )
+            ),
           )}
         </nav>
 
         {/* User Button at the Bottom */}
         <SignedIn>
           <div className="mt-auto flex flex-row justify-between  p-3 border-t border-[var(--border)]">
-            { <UserButton size="lg" className="ml-auto" />}
+            {<UserButton size="lg" className="ml-auto" />}
             {isOpen && <ThemeToggle />}
-
           </div>
         </SignedIn>
       </motion.div>

@@ -67,7 +67,7 @@ export default function ExpenseTable() {
       color: "var(--foreground)",
       backdrop: "rgba(0, 0, 0, 0.7)",
     });
-  
+
     if (confirmDelete.isConfirmed) {
       try {
         const response = await fetch(`/api/expenses/${id}`, {
@@ -105,10 +105,8 @@ export default function ExpenseTable() {
         });
       }
     }
-  };  
+  };
 
-
-  
   // ✅ Open Edit Modal with Selected Expense
   const handleEdit = (expense: Expense) => {
     setSelectedExpense(expense);
@@ -130,8 +128,8 @@ export default function ExpenseTable() {
       if (data.success) {
         setExpenses(
           expenses.map((exp) =>
-            exp.id === selectedExpense.id ? selectedExpense : exp
-          )
+            exp.id === selectedExpense.id ? selectedExpense : exp,
+          ),
         );
         Swal.fire("Updated!", "Expense has been updated.", "success");
         setIsEditModalOpen(false);

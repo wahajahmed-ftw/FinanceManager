@@ -38,7 +38,10 @@ export async function POST(req: Request) {
 
     const user = await prisma.user.upsert({
       where: { clerkId: id },
-      update: { email: email_addresses[0]?.email_address, name: `${first_name} ${last_name}` },
+      update: {
+        email: email_addresses[0]?.email_address,
+        name: `${first_name} ${last_name}`,
+      },
       create: {
         clerkId: id,
         name: `${first_name} ${last_name}`,
@@ -51,6 +54,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error("❌ Webhook Processing Error:", error.message);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 },
+    );
   }
 }

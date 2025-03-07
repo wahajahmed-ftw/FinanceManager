@@ -11,7 +11,6 @@
 //   ],
 // };
 
-
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { AsyncCallbackSet } from "next/dist/server/lib/async-callback-set";
 import { NextResponse } from "next/server";
@@ -24,9 +23,9 @@ const isPublicRoute = createRouteMatcher([
   "/contact",
 ]);
 
-export default clerkMiddleware(async (auth, req)  =>  {
+export default clerkMiddleware(async (auth, req) => {
   // If user is logged in and on the homepage, redirect to /dashboard
-  const {userId}= await auth()
+  const { userId } = await auth();
   if (userId && req.nextUrl.pathname === "/") {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }

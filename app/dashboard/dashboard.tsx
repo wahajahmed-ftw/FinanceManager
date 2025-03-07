@@ -176,7 +176,6 @@ export default function FinanceDashboard() {
 
   return (
     <div className="min-h-screen p-6 transition-colors duration-300 bg-gradient-to-br from-[var(--muted)] via-[var(--color-bg-middle)] to-[var(--color-bg-end)] text-[var(--color-text)]">
-
       <motion.div
         variants={containerVariants}
         initial="hidden"
