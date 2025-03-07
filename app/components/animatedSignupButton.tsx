@@ -4,8 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SignIn } from "@clerk/nextjs";
 import { X } from "lucide-react";
 import { BorderBeam } from "@/components/magicui/border-beam";
-import { MagicCard } from "@/components/magicui/magic-card";
-import { createPortal } from "react-dom";
+
 const AnimatedSignInButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);

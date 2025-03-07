@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
 import { addIncome } from "./server"; // Assuming server action exists
-import { useRouter } from "next/router";
 import {
   Tooltip,
   TooltipContent,

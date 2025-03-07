@@ -6,7 +6,6 @@ import { useInView } from "react-intersection-observer";
 import ThemeToggle from "../themeSelector";
 
 export function MainLanding() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const fromBottomVariants = {
     hidden: { opacity: 0, y: 50 },

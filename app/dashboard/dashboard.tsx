@@ -14,8 +14,7 @@ import {
   YAxis,
   Legend,
 } from "recharts";
-import { Wallet, ShoppingCart, Car, Zap, Sun, Moon } from "lucide-react";
-import ThemeToggle from "../components/themeSelector";
+import { Wallet, ShoppingCart, Car, Zap } from "lucide-react";
 
 // Define strict types
 interface FinanceData {

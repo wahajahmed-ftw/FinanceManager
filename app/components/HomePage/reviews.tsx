@@ -1,6 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
-import { FaTwitter, FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 

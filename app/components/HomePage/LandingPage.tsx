@@ -4,7 +4,6 @@ import { GlobeDemo } from "./globe";
 import MarqueeDemo from "./reviews";
 import LandingSection from "./manageFiance";
 import { MainLanding } from "./mainLanding";
-import { div } from "motion/react-client";
 
 export default function LandingPage() {
   return (

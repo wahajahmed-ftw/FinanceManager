@@ -4,8 +4,6 @@ import {
   ClerkProvider,
   SignedIn,
   SignedOut,
-  SignInButton,
-  UserButton,
 } from "@clerk/nextjs";
 import Sidebar from "./components/sidebar";
 import { ThemeProvider } from "@/context/themeContext";

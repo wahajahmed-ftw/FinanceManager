@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Dialog } from "@headlessui/react";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
-import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
+import {  X, DollarSign, Calendar, Layers } from "lucide-react";
 import { ClientSideRowModelModule, ModuleRegistry } from "ag-grid-community";
-import { themeBalham } from "ag-grid-community";
 
 // Import AG Grid styles
 import "ag-grid-community/styles/ag-grid.css";
