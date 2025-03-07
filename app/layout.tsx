@@ -19,6 +19,7 @@ import MarqueeDemo from "./components/HomePage/reviews";
 import { GlobeDemo } from "./components/HomePage/globe";
 import { ThemeProvider } from "@/context/themeContext";
 import ThemeToggle from "./components/themeSelector";
+import LandingPage from "./components/HomePage/LandingPage";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -37,21 +38,12 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >          
             <SignedOut>
-              <ThemeToggle/>
-              <MainLanding />
-              <Separator />
-              <LandingSection />
-              <Separator />
-              <MarqueeDemo />
-              <Separator />
-              <GlobeDemo />
-              <Separator />
-              <Footer />
+             <LandingPage/>
             </SignedOut>
             <SignedIn>
               <div className="flex">
                 <Sidebar />
-                <main className="flex-1 p-4 overflow-hidden">{children}</main>
+                <main className="flex-1 p-4 overflow-hidden bg-[var(--background)]">{children}</main>
               </div>
             </SignedIn>
           </body>

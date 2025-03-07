@@ -70,10 +70,11 @@ export default function IncomeFormPopup() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 bg-blue-600 text-white 
-            w-16 h-16 rounded-full flex items-center justify-center 
-            shadow-2xl hover:bg-blue-700 transition-colors 
-            dark:bg-blue-500 dark:hover:bg-blue-600"
+            className="fixed bottom-6 right-6 
+              bg-[var(--primary)] text-var[(--primary-foreground)] 
+              w-16 h-16 rounded-full flex items-center justify-center 
+              shadow-2xl hover:bg-var[(--button-danger-hover)] 
+              transition-colors"
             >
             <Plus size={32} />
           </motion.button>
@@ -104,25 +105,24 @@ export default function IncomeFormPopup() {
                 damping: 20 
               }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-md bg-white/80 dark:bg-gray-800/80 
+              className="w-full max-w-md bg-[var(--card-bg)]/80 
                 backdrop-blur-lg rounded-2xl shadow-2xl p-6 
-                relative border border-white/10"
+                relative border border-[var(--border)]"
             >
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 text-gray-600 
-                  dark:text-gray-300 hover:text-gray-900 
-                  dark:hover:text-white transition-colors"
+                className="absolute top-4 right-4 text-[var(--muted-foreground)] 
+                  hover:text-[var(--foreground)] transition-colors"
               >
                 <X size={24} />
               </button>
 
               {/* Form Title */}
               <h2 className="text-2xl font-bold mb-6 text-center 
-                text-gray-800 dark:text-white flex items-center 
+                text-[var(--foreground)] flex items-center 
                 justify-center gap-2">
-                <DollarSign className="text-blue-600" />
+                <DollarSign className="text-[var(--primary)]" />
                 Add Income
               </h2>
 
@@ -130,9 +130,8 @@ export default function IncomeFormPopup() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Income Source */}
                 <div className="relative">
-                  <label className="block mb-2 text-gray-700 
-                    dark:text-gray-300 flex items-center gap-2">
-                    <Layers size={16} className="text-blue-600" />
+                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                    <Layers size={16} className="text-[var(--primary)]" />
                     Income Source
                   </label>
                   <div className="relative">
@@ -141,10 +140,10 @@ export default function IncomeFormPopup() {
                       value={incomeData.source}
                       onChange={handleChange}
                       className="w-full p-3 pr-10 border rounded-lg 
-                        bg-white/70 dark:bg-gray-700/70 
-                        text-gray-800 dark:text-white 
-                        border-gray-300 dark:border-gray-600 
-                        focus:ring-2 focus:ring-blue-500 
+                        bg-[var(--color-select-bg)] 
+                        text-[var(--foreground)]
+                        border-[var(--border)] 
+                        focus:ring-2 focus:ring-[var(--ring)] 
                         transition-all"
                     >
                       <option value="Job">Job</option>
@@ -155,7 +154,7 @@ export default function IncomeFormPopup() {
                     </select>
                     <div className="pointer-events-none absolute 
                       inset-y-0 right-0 flex items-center px-3 
-                      text-gray-500">
+                      text-[var(--muted-foreground)]">
                       <Layers size={20} />
                     </div>
                   </div>
@@ -163,9 +162,8 @@ export default function IncomeFormPopup() {
 
                 {/* Date Input */}
                 <div className="relative">
-                  <label className="block mb-2 text-gray-700 
-                    dark:text-gray-300 flex items-center gap-2">
-                    <Calendar size={16} className="text-blue-600" />
+                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                    <Calendar size={16} className="text-[var(--primary)]" />
                     Date
                   </label>
                   <div className="relative">
@@ -176,15 +174,15 @@ export default function IncomeFormPopup() {
                       onChange={handleChange}
                       required
                       className="w-full p-3 pr-10 border rounded-lg 
-                        bg-white/70 dark:bg-gray-700/70 
-                        text-gray-800 dark:text-white 
-                        border-gray-300 dark:border-gray-600 
-                        focus:ring-2 focus:ring-blue-500 
+                        bg-[var(--color-select-bg)]
+                        text-[var(--foreground)]
+                        border-[var(--border)] 
+                        focus:ring-2 focus:ring-[var(--ring)] 
                         transition-all"
                     />
                     <div className="pointer-events-none absolute 
                       inset-y-0 right-0 flex items-center px-3 
-                      text-gray-500">
+                      text-[var(--muted-foreground)]">
                       <Calendar size={20} />
                     </div>
                   </div>
@@ -192,9 +190,8 @@ export default function IncomeFormPopup() {
 
                 {/* Amount Input */}
                 <div className="relative">
-                  <label className="block mb-2 text-gray-700 
-                    dark:text-gray-300 flex items-center gap-2">
-                    <DollarSign size={16} className="text-blue-600" />
+                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                    <DollarSign size={16} className="text-[var(--primary)]" />
                     Amount
                   </label>
                   <div className="relative">
@@ -208,15 +205,15 @@ export default function IncomeFormPopup() {
                       required
                       placeholder="Enter amount"
                       className="w-full p-3 pl-10 border rounded-lg 
-                        bg-white/70 dark:bg-gray-700/70 
-                        text-gray-800 dark:text-white 
-                        border-gray-300 dark:border-gray-600 
-                        focus:ring-2 focus:ring-blue-500 
+                        bg-[var(--color-select-bg)]
+                        text-[var(--foreground)]
+                        border-[var(--border)] 
+                        focus:ring-2 focus:ring-[var(--ring)] 
                         transition-all"
                     />
                     <div className="pointer-events-none absolute 
                       inset-y-0 left-0 flex items-center px-3 
-                      text-gray-500">
+                      text-[var(--muted-foreground)]">
                       <DollarSign size={20} />
                     </div>
                   </div>
@@ -228,10 +225,10 @@ export default function IncomeFormPopup() {
                   whileTap={{ scale: 0.95 }}
                   type="submit"
                   disabled={loading}
-                  className="w-full p-3 rounded-lg bg-blue-600 
-                    text-white font-semibold 
-                    hover:bg-blue-700 focus:outline-none 
-                    focus:ring-2 focus:ring-blue-500 
+                  className="w-full p-3 rounded-lg bg-[var(--button-primary)] 
+                    text-[var(--primary-foreground)] font-semibold 
+                    hover:bg-[var(--button-primary-hover)] focus:outline-none 
+                    focus:ring-2 focus:ring-[var(--ring)] 
                     focus:ring-offset-2 transition-all 
                     disabled:opacity-50 disabled:cursor-not-allowed 
                     flex items-center justify-center gap-2"
@@ -255,8 +252,8 @@ export default function IncomeFormPopup() {
                       exit={{ opacity: 0, y: -10 }}
                       className={`text-center mt-2 ${
                         message.includes("successfully") 
-                          ? "text-green-600" 
-                          : "text-red-600"
+                          ? "text-[var(--success)]" 
+                          : "text-[var(--danger)]"
                       }`}
                     >
                       {message}
@@ -268,6 +265,7 @@ export default function IncomeFormPopup() {
           </motion.div>
         )}
       </AnimatePresence>
+
     </>
   );
 }

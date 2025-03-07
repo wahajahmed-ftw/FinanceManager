@@ -3,7 +3,7 @@ import IncomeTable from "./incometable";
 
 export default function Income() {
     return (
-        <div>Income Page
+        <div>
         <IncomeForm/>
         <IncomeTable/>
         </div>

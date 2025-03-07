@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import AnimatedSignInButton from '../animatedSignupButton';
 import { useInView } from "react-intersection-observer";  
+import ThemeToggle from '../themeSelector';
 // Import the Card components from your UI library
 // If you're using shadcn/ui, the import would look like this:
 // import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -103,6 +104,7 @@ export function MainLanding() {
               animate="visible"
               variants={containerVariants}
             >
+                          <ThemeToggle/>
               <AnimatedSignInButton/>
             </motion.div>
 
@@ -142,7 +144,7 @@ export function MainLanding() {
           <img className="hidden w-full lg:block " src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/5/credit-cards.png" alt="" />
           {/* <img className="block w-full lg:hidden" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/5/credit-cards-mobile.png" alt="" /> */}
         </motion.div>
-
+          
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
           <motion.div 
             className="max-w-xl mx-auto text-center"

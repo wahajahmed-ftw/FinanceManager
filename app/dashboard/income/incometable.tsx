@@ -5,6 +5,7 @@
   import { Dialog } from "@headlessui/react";
   import { AgGridReact } from "ag-grid-react";
   import { ColDef } from "ag-grid-community";
+  import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
   import { ClientSideRowModelModule, ModuleRegistry } from "ag-grid-community";
   import { themeBalham } from 'ag-grid-community';
 
@@ -61,37 +62,37 @@
         text: "This income entry will be permanently deleted!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "var(--button-danger)",
+        cancelButtonColor: "var(--button-secondary)",
         confirmButtonText: "Yes, delete it!",
-        background: 'rgb(31, 41, 55)', 
-        color: 'white',
-        backdrop: 'rgba(0,0,0,0.7)',
+        background: "var(--color-bg-middle)",
+        color: "var(--foreground)",
+        backdrop: "rgba(0, 0, 0, 0.7)",
       });
     
       if (confirmDelete.isConfirmed) {
         try {
           const response = await fetch(`/api/income/${id}`, { method: "DELETE" });
           const data = await response.json();
-          
+    
           if (data.success) {
             setIncomeData(incomeData.filter((income) => income.id !== id));
             Swal.fire({
               title: "Deleted!",
               text: "Income entry has been removed.",
               icon: "success",
-              background: 'rgb(31, 41, 55)',
-              color: 'white',
-              backdrop: 'rgba(0,0,0,0.7)',
+              background: "var(--color-bg-middle)",
+              color: "var(--foreground)",
+              backdrop: "rgba(0, 0, 0, 0.7)",
             });
           } else {
             Swal.fire({
               title: "Error!",
               text: data.error || "Failed to delete.",
               icon: "error",
-              background: 'rgb(31, 41, 55)',
-              color: 'white',
-              backdrop: 'rgba(0,0,0,0.7)',
+              background: "var(--color-bg-middle)",
+              color: "var(--foreground)",
+              backdrop: "rgba(0, 0, 0, 0.7)",
             });
           }
         } catch (error) {
@@ -99,13 +100,14 @@
             title: "Error!",
             text: "Something went wrong.",
             icon: "error",
-            background: 'rgb(31, 41, 55)',
-            color: 'white',
-            backdrop: 'rgba(0,0,0,0.7)',
+            background: "var(--color-bg-middle)",
+            color: "var(--foreground)",
+            backdrop: "rgba(0, 0, 0, 0.7)",
           });
         }
       }
     };
+    
 
     const openEditDialog = (income: Income) => {
       setEditingIncome(income);
@@ -234,7 +236,7 @@
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="min-h-screen bg-gray-900 flex items-center justify-center p-4"
+        className="min-h-screen bg-[var(--background)] flex items-center justify-center p-4"
       >
       {/* <div className="w-full max-w-6xl bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden">
     <div className="ag-theme-alpine-dark bg-gray-900" style={{ height: "500px", width: "100%", margin: "0 auto" }}>
@@ -271,7 +273,7 @@
   </div> */}
   <div className="w-full max-w-6xl bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden">
   <div className="ag-theme-alpine-dark bg-gray-900" style={{ height: "500px", width: "100%", margin: "0 auto" }}>
-    <h2 className="text-2xl font-bold text-center text-gray-200 py-4 bg-gray-800/50 backdrop-blur-sm">
+    <h2 className="text-2xl font-bold text-center text-[var(--foreground)] py-4 bg-[var(--color-bg-end)]/50 backdrop-blur-sm">
       Income Records
     </h2>
 
@@ -311,81 +313,127 @@
   </div>
 </div>
 
-
-        <AnimatePresence>
-          {isOpen && (
-            <Dialog 
-              open={isOpen} 
-              onClose={() => setIsOpen(false)} 
-              className="fixed inset-0 z-50 flex items-center justify-center"
+<AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center 
+              bg-[var(--overlay-bg)] backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          >
+            {/* Popup Container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 20 
+              }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md bg-[var(--card-bg)]/80 
+                backdrop-blur-lg rounded-2xl shadow-2xl p-6 
+                relative border border-[var(--border)]"
             >
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/70 backdrop-blur-sm"
-              />
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative bg-gray-800 rounded-2xl shadow-2xl w-96 p-6 max-w-md mx-auto"
+              {/* Close Button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-[var(--muted-foreground)] 
+                  hover:text-[var(--foreground)] transition-colors"
               >
-                <Dialog.Title className="text-2xl font-bold text-gray-200 mb-6 text-center">
-                  Edit Income Entry
-                </Dialog.Title>
+                <X size={24} />
+              </button>
 
-                <div className="space-y-4">
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <label className="block text-gray-300 mb-2">Source</label>
+              {/* Form Title */}
+              <h2 className="text-2xl font-bold mb-6 text-center 
+                text-[var(--foreground)] flex items-center 
+                justify-center gap-2">
+                <DollarSign className="text-[var(--primary)]" />
+                Edit Income Entry
+              </h2>
+
+              {/* Income Form */}
+              <form onSubmit={handleEdit} className="space-y-4">
+                {/* Income Source */}
+                <div className="relative">
+                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                    <Layers size={16} className="text-[var(--primary)]" />
+                    Income Source
+                  </label>
+                  <div className="relative">
                     <input
                       type="text"
                       value={editingIncome?.source || ""}
                       onChange={(e) => setEditingIncome({ ...editingIncome!, source: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                      className="w-full p-3 border rounded-lg 
+                        bg-[var(--color-select-bg)] 
+                        text-[var(--foreground)]
+                        border-[var(--border)] 
+                        focus:ring-2 focus:ring-[var(--ring)] 
+                        transition-all"
                     />
-                  </motion.div>
+                  </div>
+                </div>
 
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <label className="block text-gray-300 mb-2">Amount ($)</label>
-                    <input
-                      type="number"
-                      value={editingIncome?.amount || ""}
-                      onChange={(e) => setEditingIncome({ ...editingIncome!, amount: parseFloat(e.target.value) })}
-                      className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-                    />
-                  </motion.div>
-
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <label className="block text-gray-300 mb-2">Date</label>
+                {/* Date Input */}
+                <div className="relative">
+                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                    <Calendar size={16} className="text-[var(--primary)]" />
+                    Date
+                  </label>
+                  <div className="relative">
                     <input
                       type="date"
                       value={editingIncome?.date.split("/").reverse().join("-") || ""}
                       onChange={(e) => setEditingIncome({ ...editingIncome!, date: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-600 rounded-lg bg-gray-700 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                      required
+                      className="w-full p-3 border rounded-lg 
+                        bg-[var(--color-select-bg)]
+                        text-[var(--foreground)]
+                        border-[var(--border)] 
+                        focus:ring-2 focus:ring-[var(--ring)] 
+                        transition-all"
                     />
-                  </motion.div>
+                  </div>
                 </div>
 
+                {/* Amount Input */}
+                <div className="relative">
+                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                    <DollarSign size={16} className="text-[var(--primary)]" />
+                    Amount ($)
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={editingIncome?.amount || ""}
+                      onChange={(e) => setEditingIncome({ ...editingIncome!, amount: parseFloat(e.target.value) })}
+                      min="0"
+                      step="0.01"
+                      required
+                      placeholder="Enter amount"
+                      className="w-full p-3 border rounded-lg 
+                        bg-[var(--color-select-bg)]
+                        text-[var(--foreground)]
+                        border-[var(--border)] 
+                        focus:ring-2 focus:ring-[var(--ring)] 
+                        transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Buttons */}
                 <div className="flex justify-between mt-6 space-x-4">
                   <motion.button
                     onClick={() => setIsOpen(false)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex-1 bg-gray-700 text-gray-300 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
+                    className="flex-1 bg-[var(--button-secondary)] 
+                      text-[var(--muted-foreground)] py-2 rounded-lg 
+                      hover:bg-[var(--button-secondary-hover)] transition duration-300"
                   >
                     Cancel
                   </motion.button>
@@ -393,15 +441,19 @@
                     onClick={handleEdit}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex-1 bg-blue-700 text-white py-2 rounded-lg hover:shadow-lg transition duration-300"
+                    className="flex-1 bg-[var(--button-primary)] 
+                      text-[var(--primary-foreground)] py-2 rounded-lg 
+                      hover:bg-[var(--button-primary-hover)] transition duration-300"
                   >
                     Save
                   </motion.button>
                 </div>
-              </motion.div>
-            </Dialog>
-          )}
-        </AnimatePresence>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       </motion.div>
     );
   }

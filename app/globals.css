@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Poppins','Manrope', sans-serif;
+  --font-mono: var(--font-geist-mono); 
+}
+body{
+  font-family: var(--font-sans);
 }
 
 :root {
@@ -48,6 +52,20 @@
 
   --card-bg: rgb(220, 225, 230); /* Soft muted grayish-blue */
   --card-bg-hover: rgb(200, 210, 220); 
+
+  --color-bg-start: var(--background);
+  --color-bg-middle: rgb(230, 235, 240); /* Light transition */
+  --color-bg-end: rgb(210, 220, 230); /* Soft neutral tone */
+
+  /* Text Colors */
+  --color-text: var(--foreground);
+  --color-income-text: var(--success);
+  --color-balance-text: var(--primary-foreground);
+
+  /* Form & Borders */
+  --color-select-bg: var(--muted);
+  --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
 }
 
 .dark {
@@ -90,10 +108,24 @@
 
   --card-bg: rgb(35, 40, 55); /* Darker navy-gray for consistency */
   --card-bg-hover: rgb(45, 50, 65);
+
+  --color-bg-start: var(--background);
+  --color-bg-middle: rgb(40, 45, 60); /* Subtle dark transition */
+  --color-bg-end: rgb(50, 55, 70); /* Darker navy-gray */
+
+  /* Text Colors */
+  --color-text: var(--foreground);
+  --color-income-text: var(--success);
+  --color-balance-text: var(--primary-foreground);
+
+  /* Form & Borders */
+  --color-select-bg: var(--muted);
+  --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
 }
 
 .grey {
-  --background: rgb(114, 114, 114);
+  --background: rgb(201, 199, 199);
   --foreground: rgb(50, 50, 50);
 
   --primary: rgb(120, 120, 120);
@@ -132,6 +164,19 @@
 
   --card-bg: rgb(100, 100, 100); /* Neutral mid-tone gray */
   --card-bg-hover: rgb(120, 120, 120); 
+
+  --color-bg-start: var(--background);
+  --color-bg-middle: rgb(180, 180, 180); /* Mid-tone for smooth transition */
+  --color-bg-end: rgb(160, 160, 160); /* Darker shade for depth */
+
+  /* Text Colors */
+  --color-text: var(--foreground);
+  --color-income-text: var(--success);
+  --color-balance-text: var(--primary-foreground);
+
+  /* Form & Borders */
+  --color-select-bg: var(--muted);
+  --color-border: var(--border);
 }
 
 
