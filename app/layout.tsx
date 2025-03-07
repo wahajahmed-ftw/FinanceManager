@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {
@@ -9,16 +8,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Sidebar from "./components/sidebar";
-import { MainLanding } from "./components/HomePage/mainLanding";
-import Footer from "./components/HomePage/footer";
-import { Separator } from "@/components/ui/separator";
-import { Scroll } from "lucide-react";
-import LandingSection from "./components/HomePage/manageFiance";
-import { Marquee } from "@/components/magicui/marquee";
-import MarqueeDemo from "./components/HomePage/reviews";
-import { GlobeDemo } from "./components/HomePage/globe";
 import { ThemeProvider } from "@/context/themeContext";
-import ThemeToggle from "./components/themeSelector";
 import LandingPage from "./components/HomePage/LandingPage";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
