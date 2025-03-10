@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
-import {  X, DollarSign, Calendar, Layers } from "lucide-react";
+import { X, DollarSign, Calendar, Layers } from "lucide-react";
 import { ClientSideRowModelModule, ModuleRegistry } from "ag-grid-community";
 
 // Import AG Grid styles
@@ -12,6 +12,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 import Swal from "sweetalert2";
+import SyncLoader from "react-spinners/SyncLoader";
 
 // Register modules
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -44,7 +45,7 @@ export default function IncomeTable() {
         data.map((income: Income) => ({
           ...income,
           date: new Date(income.date).toLocaleDateString(),
-        })),
+        }))
       );
     } catch (err: any) {
       setError(err.message);
@@ -205,7 +206,7 @@ export default function IncomeTable() {
         transition={{ duration: 0.5 }}
         className="flex justify-center items-center h-screen bg-gray-900"
       >
-        <p className="text-xl text-gray-300">Loading income data...</p>
+        <SyncLoader color="var(--foreground)" size={15} />
       </motion.div>
     );
 
@@ -240,39 +241,6 @@ export default function IncomeTable() {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-[var(--background)] flex items-center justify-center p-4"
     >
-      {/* <div className="w-full max-w-6xl bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden">
-    <div className="ag-theme-alpine-dark bg-gray-900" style={{ height: "500px", width: "100%", margin: "0 auto" }}>
-      <h2 className="text-2xl font-bold text-center text-gray-200 py-4 bg-gray-800/50 backdrop-blur-sm">
-        Income Records
-      </h2>
-
-      <AgGridReact
-        className="ag-theme-alpine-dark"
-        rowData={incomeData}
-        columnDefs={columnDefs}
-        modules={[ClientSideRowModelModule]}
-        rowModelType="clientSide"
-        animateRows={true}
-        
-        defaultColDef={{
-          sortable: true,
-          filter: true,
-          resizable: true,
-        }}
-        rowHeight={50}
-        gridOptions={{
-          theme: {
-            background: 'bg-gray-800', // Reset to bg-gray-800
-            headerBackground: 'rgb(45, 55, 72)', // Darker header background
-            headerText: 'rgb(229, 231, 235)', // Lighter text for better contrast
-            rowHover: 'rgba(75, 85, 99, 0.5)', // Softer hover effect
-            text: 'rgb(226, 232, 240)', // Off-white text for readability
-            border: 'rgb(58, 70, 91)', // Subtle border color
-          }        
-        }}
-      />
-    </div>
-  </div> */}
       <div className="w-full max-w-6xl bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden">
         <div
           className="ag-theme-alpine-dark bg-gray-900"

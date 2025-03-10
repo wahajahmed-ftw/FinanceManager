@@ -1,10 +1,10 @@
-import IncomeForm from "./incomeform";
-import IncomeTable from "./incometable";
+import IncomeFormPopup from "./IncomeForm/incomeform";
+import IncomeTable from "./incomeTable/incometable";
 
 export default function Income() {
   return (
     <div>
-      <IncomeForm />
+      <IncomeFormPopup />
       <IncomeTable />
     </div>
   );

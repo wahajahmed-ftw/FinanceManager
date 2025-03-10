@@ -7,13 +7,12 @@ import {
   ColDef,
   ModuleRegistry,
   ClientSideRowModelModule,
-  GridOptions,
-  SelectionChangedEvent,
 } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import Swal from "sweetalert2";
 import { Dialog } from "@headlessui/react";
+import SyncLoader from "react-spinners/SyncLoader";
 
 // Register AG Grid modules
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -141,33 +140,6 @@ export default function ExpenseTable() {
     }
   };
 
-  // ✅ Column Definitions with Actions
-  // const columnDefs: ColDef<Expense>[] = [
-  //   { headerName: "ID", field: "id", width: 90, sortable: true, filter: "agNumberColumnFilter", resizable: true },
-  //   { headerName: "Category", field: "category", sortable: true, filter: "agTextColumnFilter", resizable: true },
-  //   { headerName: "Subcategory", field: "subCategory", sortable: true, filter: "agTextColumnFilter", resizable: true },
-  //   { headerName: "Amount ($)", field: "amount", sortable: true, filter: "agNumberColumnFilter", resizable: true },
-  //   {
-  //     headerName: "Date",
-  //     field: "date",
-  //     sortable: true,
-  //     filter: "agDateColumnFilter",
-  //     valueFormatter: (params) => new Date(params.value).toLo  DateString(),
-  //     resizable: true,
-  //   },
-  //   {
-  //     headerName: "Actions",
-  //     cellRenderer: (params: any) => (
-  //       <div className="flex gap-2">
-  //         <button onClick={() => handleEdit(params.data)} className="bg-blue-700 text-white px-3  h-9  rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
-  //         >Edit</button>
-  //         <button onClick={() => handleDelete(params.data.id)} className="bg-red-700 text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">Delete</button>
-  //       </div>
-  //     ),
-  //     width: 160,
-  //     pinned: "right",
-  //   },
-  // ];
   const columnDefs: ColDef<Expense>[] = [
     {
       headerName: "ID",
@@ -227,8 +199,33 @@ export default function ExpenseTable() {
       pinned: "right",
     },
   ];
+    if (loading)
+      return (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center items-center h-screen bg-gray-900"
+        >
+ <SyncLoader color="var(--foreground)" size={15} />        </motion.div>
+      );
+  
+    if (error)
+      return (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text-red-500 text-xl bg-gray-900 min-h-screen flex items-center justify-center"
+        >
+          {error}
+        </motion.p>
+      );
+  
 
   return (
+
+
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

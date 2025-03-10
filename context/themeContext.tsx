@@ -41,7 +41,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // Function to toggle theme with ripple effect
   const toggleTheme = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const { clientX, clientY } = event; // Get click position
 
@@ -57,30 +57,30 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
 
-      {/* Soft Ripple Effect */}
       <AnimatePresence>
         {ripple && (
           <motion.div
             className="fixed top-0 left-0 w-full h-full pointer-events-none"
             initial={{
-              opacity: 0.3,
+              opacity: 0.5,
               scale: 0,
-              x: ripple.x - 20,
-              y: ripple.y - 20,
+              x: ripple.x,
+              y: ripple.y,
             }}
             animate={{
-              opacity: 0,
-              scale: 25, // Soft expansion
+              opacity: [0.5, 0.2, 0], // Gradual fade out
+              scale: 30, // Expands fully
               x: "50%",
               y: "50%",
+              transform: "translate(-50%, -50%)",
             }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 1.2, // Slower ripple effect
-              ease: "easeOut",
+              duration: 1.5, // Slow, elegant expansion
+              ease: [0.22, 1, 0.36, 1], // Natural, fluid motion
             }}
           >
-            <div className="absolute w-full h-full bg-primary rounded-full"></div>
+            <div className="absolute w-[300px] h-[300px] bg-primary rounded-full opacity-30 backdrop-blur-lg"></div>
           </motion.div>
         )}
       </AnimatePresence>

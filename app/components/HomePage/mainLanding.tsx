@@ -2,11 +2,10 @@
 import { motion } from "framer-motion";
 import React from "react";
 import AnimatedSignInButton from "../animatedSignupButton";
-import { useInView } from "react-intersection-observer";
 import ThemeToggle from "../themeSelector";
+import { NumberTicker } from "@/components/magicui/number-ticker";
 
 export function MainLanding() {
-
   const fromBottomVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -94,7 +93,7 @@ export function MainLanding() {
                   >
                     {item}
                   </motion.a>
-                ),
+                )
               )}
             </motion.div>
 
@@ -154,7 +153,7 @@ export function MainLanding() {
 
       <section className="relative lg:min-h-[1000px] pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pb-24">
         <motion.div
-          className="absolute inset-x-0 bottom-0 z-10 hidden lg:flex"
+          className="absolute inset-x-0 bottom-0 hidden lg:flex"
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -163,11 +162,18 @@ export function MainLanding() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <img
-            className="hidden w-full lg:block "
+          <motion.img
+            className="hidden w-full lg:block"
             src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/5/credit-cards.png"
             alt=""
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            whileHover={{
+              scale: 1.05,
+            }}
           />
+
           {/* <img className="block w-full lg:hidden" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/5/credit-cards-mobile.png" alt="" /> */}
         </motion.div>
 
@@ -215,14 +221,14 @@ export function MainLanding() {
             <motion.a
               href="#"
               title=""
-              className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-[var(--primary-foreground)] transition-all duration-300 bg-[var(--primary)] rounded-lg sm:mt-16 hover:bg-[var(--button-primary-hover)] focus:bg-[var(--button-primary-hover)] hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary)]/20"
+              className="inline-flex items-center cursor-pointer px-6 py-4 mt-8 font-semibold text-[var(--primary-foreground)] transition-all duration-300 bg-[var(--primary)] rounded-lg sm:mt-16 hover:bg-[var(--button-primary-hover)] focus:bg-[var(--button-primary-hover)] hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary)]/20"
               role="button"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(var(--primary), 0.5)",
+                boxShadow: "500 100px 50px 500px rgba(var(--primary), 0.5)",
               }}
               whileTap={{ scale: 0.98 }}
             >
@@ -315,7 +321,7 @@ export function MainLanding() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Over 12,000 Users
+                  Over <NumberTicker value={12000} delay={0.2} /> Users
                 </motion.p>
               </motion.div>
 

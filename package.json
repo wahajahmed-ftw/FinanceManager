@@ -40,6 +40,8 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-lottie-player": "^2.1.0",
+    "react-spinner": "^0.2.7",
+    "react-spinners": "^0.15.0",
     "recharts": "^2.15.1",
     "sweetalert2": "^11.17.2",
     "tailwind-merge": "^3.0.2",

@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
-import { addIncome } from "./server"; // Assuming server action exists
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { addIncome } from "../server";
 
 export default function IncomeFormPopup() {
   const [isOpen, setIsOpen] = useState(false);

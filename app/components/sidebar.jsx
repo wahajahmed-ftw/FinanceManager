@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Menu, X, Home, Settings, User, LogIn, Database } from "lucide-react";
+import { Menu, X, User, Landmark, CircleDollarSign } from "lucide-react";
 import { SignedOut, SignedIn, SignInButton, UserButton } from "@clerk/nextjs";
 import ThemeToggle from "./themeSelector";
 
@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex bg-[var(--background)]">
       {/* Sidebar */}
       <motion.div
         initial={{ width: "4rem" }}
@@ -24,7 +24,7 @@ const Sidebar = () => {
       >
         {/* Sidebar Toggle Button */}
         <button
-          className="text-[var(--foreground)] mb-6 p-2 hover:bg-[var(--muted)] rounded-md transition"
+          className="text-[var(--foreground)] cursor-pointer mb-6 p-2 hover:bg-[var(--muted)] rounded-md transition"
           onClick={toggleSidebar}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -49,13 +49,15 @@ const Sidebar = () => {
               <Link key={item.name} href={item.path}>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className={`flex items-center gap-3  ${isOpen ? "justify-start pl-2 h-10" : "justify-center h-10"} rounded-md cursor-pointer transition bg-[var(--button-secondary)] hover:bg-[var(--button-secondary-hover)]`}
+                  className={`flex items-center gap-3  ${
+                    isOpen ? "justify-start pl-2 h-10" : "justify-center h-10"
+                  } rounded-md cursor-pointer transition bg-[var(--button-secondary)] hover:bg-[var(--button-secondary-hover)]`}
                 >
                   <item.icon size={20} />
                   {isOpen && <span className="text-sm">{item.name}</span>}
                 </motion.div>
               </Link>
-            ),
+            )
           )}
         </nav>
 
@@ -74,8 +76,8 @@ const Sidebar = () => {
 // Sidebar Menu Items with Links
 const menuItems = [
   { name: "Dashboard", icon: User, path: "/dashboard" },
-  { name: "Income", icon: User, path: "/dashboard/income" },
-  { name: "Expenses", icon: User, path: "/dashboard/expenses" },
+  { name: "Income", icon: Landmark, path: "/dashboard/income" },
+  { name: "Expenses", icon: CircleDollarSign, path: "/dashboard/expenses" },
 ];
 
 export default Sidebar;

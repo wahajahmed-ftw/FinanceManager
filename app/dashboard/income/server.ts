@@ -1,6 +1,5 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 export async function addIncome(formData: FormData) {
@@ -27,7 +26,6 @@ export async function addIncome(formData: FormData) {
         amount,
       },
     });
-    // Revalidate the path so that the new item is visible
     return { success: true, message: "Income added successfully!" };
   } catch (error) {
     console.error("Error adding income:", error);

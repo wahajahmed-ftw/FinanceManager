@@ -30,7 +30,6 @@ export async function addExpense(formData: FormData) {
       },
     });
     console.log("Expense added successfully!");
-    revalidatePath("/dashboard/expenses");
     return { success: true, message: "Expense added successfully!" };
   } catch (error: any) {
     console.error("Error adding expense:", error);

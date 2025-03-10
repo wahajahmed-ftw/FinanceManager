@@ -59,7 +59,7 @@ const ReviewCard = ({
     <figure
       className={cn(
         "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        "border-[var(--border)] bg-[var(--background)] hover:bg-[var(--card-bg-hover)] text-[var(--foreground)]",
+        "border-[var(--border)] bg-[var(--background)] hover:bg-[var(--card-bg-hover)] text-[var(--foreground)]"
       )}
     >
       <div className="flex flex-row items-center gap-2">

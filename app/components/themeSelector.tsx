@@ -19,16 +19,16 @@ export default function ThemeToggle() {
         <TooltipTrigger asChild>
           <motion.button
             onClick={toggleTheme}
-            className="w-14 h-14 flex items-center justify-center rounded-full border-2 border-[var(--border)] shadow-lg transition-all duration-300 bg-[var(--background)]"
+            className="w-14 h-14 flex items-center cursor-pointer justify-center rounded-full border-2 border-[var(--border)] shadow-lg transition-all duration-500 bg-[var(--background)] hover:shadow-xl hover:bg-[var(--card-bg-hover)]"
             whileTap={{ scale: 0.9 }} // Click effect
           >
             {/* Rotating Icon */}
             <motion.div
               className="text-[var(--foreground)]"
-              animate={{ rotate: theme === "light" ? 0 : 180 }}
+              animate={{ rotate: theme === "grey" ? 0 : 180 }}
               transition={{ type: "spring", stiffness: 200, damping: 10 }}
             >
-              {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}
+              {theme === "grey" ? <Sun size={22} /> : <Moon size={22} />}
             </motion.div>
           </motion.button>
         </TooltipTrigger>
