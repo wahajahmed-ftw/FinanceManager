@@ -7,10 +7,8 @@ import {
   ModuleRegistry,
   ClientSideRowModelModule,
   ValueGetterParams,
-  themeQuartz,
 } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Required for Quartz Theme
 import Swal from "sweetalert2";
 import { Dialog } from "@headlessui/react";
 import SyncLoader from "react-spinners/SyncLoader";
