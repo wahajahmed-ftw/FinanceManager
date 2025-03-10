@@ -26,14 +26,7 @@ type Expense = {
   subCategory: string;
   date: string;
 };
-const myTheme = themeQuartz.withParams({
-  backgroundColor: "var(--foreground)", // Reset to foreground color
-  headerBackgroundColor: "var(--muted)", // Darker header background
-  headerTextColor: "var(--primary)", // Lighter text for better contrast
-  rowHoverBackgroundColor: "var(--muted) / 50", // Softer hover effect
-  foregroundColor: "var(--primary)", // Off-white text for readability
-  borderColor: "var(--borders)", // Subtle border color
-});
+
 
 export default function ExpenseTable() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
