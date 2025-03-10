@@ -243,7 +243,6 @@ export default function ExpenseTable() {
             </h2>
 
             <AgGridReact
-              theme={myTheme}
               rowData={expenses}
               columnDefs={columnDefs}
               modules={[ClientSideRowModelModule]}
