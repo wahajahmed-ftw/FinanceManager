@@ -1,51 +1,51 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function PUT(req: NextRequest) {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return new Response(
-        JSON.stringify({ success: false, error: "User not authenticated." }),
-        { status: 401 },
+      return NextResponse.json(
+        { success: false, error: "User not authenticated." },
+        { status: 401 }
+      );
+    }
+
+    // Extract the ID from the request URL
+    const id = req.nextUrl.pathname.split("/").pop();
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Invalid expense ID." },
+        { status: 400 }
       );
     }
 
     const { category, subCategory, amount, date } = await req.json();
-    const { id } = params;
-
-    if (!id || !category || !subCategory || isNaN(amount) || !date) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Invalid input data." }),
-        { status: 400 },
+    
+    if (!category || !subCategory || isNaN(amount) || !date) {
+      return NextResponse.json(
+        { success: false, error: "Invalid input data." },
+        { status: 400 }
       );
     }
 
     // Convert DD/MM/YYYY to YYYY-MM-DD
     const dateParts = date.split("/");
     if (dateParts.length !== 3) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Invalid date format. Expected DD/MM/YYYY.",
-        }),
-        { status: 400 },
+      return NextResponse.json(
+        { success: false, error: "Invalid date format. Expected DD/MM/YYYY." },
+        { status: 400 }
       );
     }
     const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // YYYY-MM-DD
-
     const parsedDate = new Date(formattedDate);
+
     if (isNaN(parsedDate.getTime())) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Invalid date format after conversion.",
-        }),
-        { status: 400 },
+      return NextResponse.json(
+        { success: false, error: "Invalid date format after conversion." },
+        { status: 400 }
       );
     }
 
@@ -55,12 +55,9 @@ export async function PUT(
     });
 
     if (!existingExpense) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Expense not found or unauthorized.",
-        }),
-        { status: 404 },
+      return NextResponse.json(
+        { success: false, error: "Expense not found or unauthorized." },
+        { status: 404 }
       );
     }
 
@@ -70,18 +67,19 @@ export async function PUT(
       data: { category, subCategory, amount, date: parsedDate },
     });
 
-    return new Response(
-      JSON.stringify({ success: true, expense: updatedExpense }),
-      { status: 200 },
+    return NextResponse.json(
+      { success: true, expense: updatedExpense },
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error updating expense:", error);
-    return new Response(
-      JSON.stringify({ success: false, error: "Database error." }),
-      { status: 500 },
+    return NextResponse.json(
+      { success: false, error: "Database error." },
+      { status: 500 }
     );
   }
 }
+
 
 export async function DELETE(
   req: NextRequest,
