@@ -53,7 +53,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    console.error("Error adding expense:", error);
-    return { success: false, error: error instanceof Error ? error.message : "Database error." };
-  }
+    console.error("Error handling webhook:", error);
+    
+    return NextResponse.json(
+      { success: false, error: error instanceof Error ? error.message : "Database error." },
+      { status: 500 }
+    );
 }
