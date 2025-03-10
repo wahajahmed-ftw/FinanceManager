@@ -1,11 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function PUT(req: NextRequest) {
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -16,7 +13,15 @@ export async function PUT(
     }
 
     const { source, amount, date } = await req.json();
-    const { id } = params;
+        // Extract the ID from the request URL
+        const id = req.nextUrl.pathname.split("/").pop();
+        if (!id) {
+          return NextResponse.json(
+            { success: false, error: "Invalid expense ID." },
+            { status: 400 }
+          );
+        }
+    
 
     if (!id || !source || isNaN(amount) || !date) {
       return new Response(
@@ -84,10 +89,7 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } },
-) {
+export async function DELETE(req: NextRequest,) {
   try {
     const { userId } = await auth();
     if (!userId)
@@ -95,9 +97,17 @@ export async function DELETE(
         { success: false, error: "User not authenticated." },
         { status: 401 },
       );
+      const id = req.nextUrl.pathname.split("/").pop();
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Invalid input data." },
+        { status: 400 }
+      );
+    }
+
 
     const income = await prisma.income.findUnique({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
     });
 
     if (!income || income.clerkId !== userId)
@@ -106,7 +116,7 @@ export async function DELETE(
         { status: 403 },
       );
 
-    await prisma.income.delete({ where: { id: Number(params.id) } });
+    await prisma.income.delete({ where: { id: Number(id) } });
 
     return Response.json(
       { success: true, message: "Income deleted successfully." },
