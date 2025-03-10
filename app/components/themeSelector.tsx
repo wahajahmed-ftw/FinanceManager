@@ -25,7 +25,7 @@ export default function ThemeToggle() {
             {/* Rotating Icon */}
             <motion.div
               className="text-[var(--foreground)]"
-              animate={{ rotate: theme === "grey" ? 0 : 180 }}
+              animate={{ rotate: theme === "grey" ? 0 : 360 }}
               transition={{ type: "spring", stiffness: 200, damping: 10 }}
             >
               {theme === "grey" ? <Sun size={22} /> : <Moon size={22} />}
