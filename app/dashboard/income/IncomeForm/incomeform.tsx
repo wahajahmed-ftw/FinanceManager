@@ -53,7 +53,8 @@ export default function IncomeFormPopup() {
         setMessage(result.error || "Error adding income.");
       }
     } catch (error) {
-      setMessage("An unexpected error occurred.");
+      const errMsg = (error as Error).message || "Error adding income.";
+      setMessage(errMsg);
     } finally {
       setLoading(false);
     }

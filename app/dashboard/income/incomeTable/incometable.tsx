@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AgGridReact } from "ag-grid-react";
@@ -47,8 +46,8 @@ export default function IncomeTable() {
           date: new Date(income.date).toLocaleDateString(),
         }))
       );
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }
@@ -93,7 +92,7 @@ export default function IncomeTable() {
             backdrop: "rgba(0, 0, 0, 0.7)",
           });
         }
-      } catch (error) {
+      } catch {
         Swal.fire({
           title: "Error!",
           text: "Something went wrong.",
@@ -129,10 +128,10 @@ export default function IncomeTable() {
 
       fetchIncome();
       setIsOpen(false);
-    } catch (err: any) {
+    } catch (err) {
       Swal.fire({
         title: "Error!",
-        text: err.message,
+        text:  (err as Error).message,
         icon: "error",
         background: "rgb(31, 41, 55)",
         color: "white",
@@ -175,7 +174,7 @@ export default function IncomeTable() {
     },
     {
       headerName: "Actions",
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: {data:Income}) => (
         <div className="flex gap-2 items-center justify-center h-full">
           <motion.button
             onClick={() => openEditDialog(params.data)}

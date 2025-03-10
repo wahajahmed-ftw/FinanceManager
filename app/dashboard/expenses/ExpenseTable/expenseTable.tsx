@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,7 +42,7 @@ export default function ExpenseTable() {
         } else {
           setError(data.error || "Failed to fetch expenses.");
         }
-      } catch (err) {
+      } catch  {
         setError("Error fetching data.");
       } finally {
         setLoading(false);
@@ -93,7 +92,7 @@ export default function ExpenseTable() {
             backdrop: "rgba(0, 0, 0, 0.7)",
           });
         }
-      } catch (error) {
+      } catch {
         Swal.fire({
           title: "Error!",
           text: "Something went wrong.",
@@ -127,16 +126,16 @@ export default function ExpenseTable() {
       if (data.success) {
         setExpenses(
           expenses.map((exp) =>
-            exp.id === selectedExpense.id ? selectedExpense : exp,
-          ),
+            exp.id === selectedExpense.id ? selectedExpense : exp
+          )
         );
         Swal.fire("Updated!", "Expense has been updated.", "success");
         setIsEditModalOpen(false);
       } else {
         Swal.fire("Error!", data.error || "Failed to update.", "error");
       }
-    } catch (error) {
-      Swal.fire("Error!", "Something went wrong.", "error");
+    } catch {
+      Swal.fire("Error!", "Something went wrong.");
     }
   };
 
@@ -179,7 +178,7 @@ export default function ExpenseTable() {
     },
     {
       headerName: "Actions",
-      cellRenderer: (params: any) => (
+      cellRenderer: (params: {data: Expense}) => (
         <div className="flex gap-2">
           <button
             onClick={() => handleEdit(params.data)}
@@ -199,33 +198,31 @@ export default function ExpenseTable() {
       pinned: "right",
     },
   ];
-    if (loading)
-      return (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center items-center h-screen bg-gray-900"
-        >
- <SyncLoader color="var(--foreground)" size={15} />        </motion.div>
-      );
-  
-    if (error)
-      return (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center text-red-500 text-xl bg-gray-900 min-h-screen flex items-center justify-center"
-        >
-          {error}
-        </motion.p>
-      );
-  
+  if (loading)
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-center items-center h-screen bg-gray-900"
+      >
+        <SyncLoader color="var(--foreground)" size={15} />{" "}
+      </motion.div>
+    );
+
+  if (error)
+    return (
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="text-center text-red-500 text-xl bg-gray-900 min-h-screen flex items-center justify-center"
+      >
+        {error}
+      </motion.p>
+    );
 
   return (
-
-
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

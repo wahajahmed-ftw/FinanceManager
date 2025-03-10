@@ -86,8 +86,8 @@ export default function FinanceDashboard() {
 
         const json = await res.json();
         setData(json.data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (error: unknown) {
+        setError((error as Error).message);
       } finally {
         setLoading(false);
       }

@@ -1,7 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
 
 export async function addExpense(formData: FormData) {
   const { userId } = await auth();
@@ -31,7 +30,7 @@ export async function addExpense(formData: FormData) {
     });
     console.log("Expense added successfully!");
     return { success: true, message: "Expense added successfully!" };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error adding expense:", error);
     return { success: false, error: "Database error." };
   }

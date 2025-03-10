@@ -52,11 +52,8 @@ export async function POST(req: Request) {
     console.log("✅ User upserted in DB:", user);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error("❌ Webhook Processing Error:", error.message);
-    return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 },
-    );
+  } catch (error: unknown) {
+    console.error("Error adding expense:", error);
+    return { success: false, error: error instanceof Error ? error.message : "Database error." };
   }
 }

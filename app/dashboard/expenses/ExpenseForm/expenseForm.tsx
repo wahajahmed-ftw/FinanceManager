@@ -20,7 +20,6 @@ export default function ExpenseFormPopup() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const categories: Record<string, string[]> = {
     Food: ["Groceries", "Restaurants", "Fast Food"],
@@ -29,7 +28,7 @@ export default function ExpenseFormPopup() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -37,7 +36,6 @@ export default function ExpenseFormPopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
 
     const data = new FormData();
     data.append("amount", formData.amount);
@@ -49,7 +47,6 @@ export default function ExpenseFormPopup() {
       const result = await addExpense(data);
 
       if (result.success) {
-        setMessage("Expense added successfully!");
         setFormData({
           amount: "",
           category: "Food",
@@ -59,13 +56,11 @@ export default function ExpenseFormPopup() {
 
         setTimeout(() => {
           setIsOpen(false);
-          setMessage("");
         }, 2000);
       } else {
-        setMessage(result.error || "Error adding expense.");
       }
-    } catch (error) {
-      setMessage("An unexpected error occurred.");
+    } catch (_error) {
+      console.error("Error adding expense:", _error);
     } finally {
       setLoading(false);
     }

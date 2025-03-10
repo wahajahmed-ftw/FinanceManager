@@ -44,7 +44,7 @@ const LandingSection = () => {
           </p>
           <p className="mt-4">
             Get personalized insights, set financial goals, and take control of
-            your savings. Whether it's budgeting for groceries or planning for
+            your savings. Whether it&apos;s budgeting for groceries or planning for
             big investments, our intelligent system guides you every step of the
             way.
           </p>
