@@ -59,4 +59,5 @@ export async function POST(req: Request) {
       { success: false, error: error instanceof Error ? error.message : "Database error." },
       { status: 500 }
     );
+  }
 }
