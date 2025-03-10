@@ -80,7 +80,7 @@ export default function ExpenseFormPopup() {
               bg-[var(--primary)] text-var[(--primary-foreground)] 
               w-16 h-16 rounded-full flex items-center justify-center 
               shadow-2xl hover:bg-var[(--button-danger-hover)] 
-              transition-colors"
+              transition-colors cursor-pointer"
             >
               <Plus size={32} />
             </motion.button>

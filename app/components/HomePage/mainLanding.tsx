@@ -4,7 +4,6 @@ import React from "react";
 import AnimatedSignInButton from "../animatedSignupButton";
 import ThemeToggle from "../themeSelector";
 import { NumberTicker } from "@/components/magicui/number-ticker";
-import Image from "next/image";
 
 export function MainLanding() {
   const fromBottomVariants = {
@@ -69,10 +68,11 @@ export function MainLanding() {
               variants={logoVariants}
             >
               <a href="#" title="" className="flex">
-                <Image
+                <img
                   className="w-auto h-8"
                   src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/5/logo.svg"
                   alt=""
+
                 />
               </a>
             </motion.div>

@@ -6,6 +6,7 @@ import {
   ColDef,
   ModuleRegistry,
   ClientSideRowModelModule,
+  ValueGetterParams,
 } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -42,7 +43,7 @@ export default function ExpenseTable() {
         } else {
           setError(data.error || "Failed to fetch expenses.");
         }
-      } catch  {
+      } catch {
         setError("Error fetching data.");
       } finally {
         setLoading(false);
@@ -142,7 +143,9 @@ export default function ExpenseTable() {
   const columnDefs: ColDef<Expense>[] = [
     {
       headerName: "ID",
-      valueGetter: (params) => (params.node ? params.node.rowIndex + 1 : ""), // Generates row index (1-based)
+      valueGetter: (params: ValueGetterParams<Expense, any>) => {
+        return params.node?.rowIndex != null ? params.node.rowIndex + 1 : "";
+      },
       width: 90,
       sortable: true,
       resizable: true,
@@ -178,7 +181,7 @@ export default function ExpenseTable() {
     },
     {
       headerName: "Actions",
-      cellRenderer: (params: {data: Expense}) => (
+      cellRenderer: (params: { data: Expense }) => (
         <div className="flex gap-2">
           <button
             onClick={() => handleEdit(params.data)}
