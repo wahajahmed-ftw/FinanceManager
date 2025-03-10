@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";

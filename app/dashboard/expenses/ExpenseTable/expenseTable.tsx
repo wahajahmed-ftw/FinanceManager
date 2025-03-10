@@ -143,7 +143,7 @@ export default function ExpenseTable() {
   const columnDefs: ColDef<Expense>[] = [
     {
       headerName: "ID",
-      valueGetter: (params: ValueGetterParams<Expense, any>) => {
+      valueGetter: (params: ValueGetterParams<Expense, unknown>) => {
         return params.node?.rowIndex != null ? params.node.rowIndex + 1 : "";
       },
       width: 90,
