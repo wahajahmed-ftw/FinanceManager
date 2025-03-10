@@ -7,9 +7,10 @@ import {
   ModuleRegistry,
   ClientSideRowModelModule,
   ValueGetterParams,
+  themeQuartz,
 } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import "ag-grid-community/styles/ag-theme-quartz.css"; // Required for Quartz Theme
 import Swal from "sweetalert2";
 import { Dialog } from "@headlessui/react";
 import SyncLoader from "react-spinners/SyncLoader";
@@ -25,6 +26,14 @@ type Expense = {
   subCategory: string;
   date: string;
 };
+const myTheme = themeQuartz.withParams({
+  backgroundColor: "var(--foreground)", // Reset to foreground color
+  headerBackgroundColor: "var(--muted)", // Darker header background
+  headerTextColor: "var(--primary)", // Lighter text for better contrast
+  rowHoverBackgroundColor: "var(--muted) / 50", // Softer hover effect
+  foregroundColor: "var(--primary)", // Off-white text for readability
+  borderColor: "var(--borders)", // Subtle border color
+});
 
 export default function ExpenseTable() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -243,7 +252,7 @@ export default function ExpenseTable() {
             </h2>
 
             <AgGridReact
-              className="ag-theme-alpine-dark"
+              theme={myTheme}
               rowData={expenses}
               columnDefs={columnDefs}
               modules={[ClientSideRowModelModule]}
@@ -267,14 +276,14 @@ export default function ExpenseTable() {
                   type: "fitGridWidth", // Ensures columns take up full width
                   defaultMinWidth: 100,
                 },
-                theme: {
-                  background: "bg-[var(--foreground)]", // Reset to var(--foreground)
-                  headerBackground: "var(--muted)", // Darker header background
-                  headerText: "var(--primary)", // Lighter text for better contrast
-                  rowHover: "var(--muted)/50", // Softer hover effect
-                  text: "var(--primary)", // Off-white text for readability
-                  border: "var(--borders)", // Subtle border color
-                },
+                // theme: {
+                //   background: "var(--foreground)", // Reset to var(--foreground)
+                //   headerBackground: "var(--muted)", // Darker header background
+                //   headerText: "var(--primary)", // Lighter text for better contrast
+                //   rowHover: "var(--muted)/50", // Softer hover effect
+                //   text: "var(--primary)", // Off-white text for readability
+                //   border: "var(--borders)", // Subtle border color
+                // },
               }}
             />
           </div>

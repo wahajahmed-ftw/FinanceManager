@@ -270,14 +270,14 @@ export default function IncomeTable() {
                 type: "fitGridWidth", // Ensures columns take up full width
                 defaultMinWidth: 100,
               },
-              theme: {
-                background: "bg-gray-800", // Reset to bg-gray-800
-                headerBackground: "rgb(45, 55, 72)", // Darker header background
-                headerText: "rgb(229, 231, 235)", // Lighter text for better contrast
-                rowHover: "rgba(75, 85, 99, 0.5)", // Softer hover effect
-                text: "rgb(226, 232, 240)", // Off-white text for readability
-                border: "rgb(58, 70, 91)", // Subtle border color
-              },
+              // theme: {
+              //   backgroundColor: "bg-gray-800", // Reset to bg-gray-800
+              //   headerBackground: "rgb(45, 55, 72)", // Darker header background
+              //   headerText: "rgb(229, 231, 235)", // Lighter text for better contrast
+              //   rowHover: "rgba(75, 85, 99, 0.5)", // Softer hover effect
+              //   text: "rgb(226, 232, 240)", // Off-white text for readability
+              //   border: "rgb(58, 70, 91)", // Subtle border color
+              // },
             }}
           />
         </div>
