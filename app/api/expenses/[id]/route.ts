@@ -81,25 +81,22 @@ export async function PUT(req: NextRequest) {
 }
 
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function DELETE(req: NextRequest) {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return new Response(
-        JSON.stringify({ success: false, error: "User not authenticated." }),
-        { status: 401 },
+      return NextResponse.json(
+        { success: false, error: "User not authenticated." },
+        { status: 401 }
       );
     }
 
-    const { id } = params;
-
+    // Extract the ID from the request URL
+    const id = req.nextUrl.pathname.split("/").pop();
     if (!id) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Invalid input data." }),
-        { status: 400 },
+      return NextResponse.json(
+        { success: false, error: "Invalid input data." },
+        { status: 400 }
       );
     }
 
@@ -108,31 +105,26 @@ export async function DELETE(
     });
 
     if (!existingExpense) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Expense not found or unauthorized.",
-        }),
-        { status: 404 },
+      return NextResponse.json(
+        { success: false, error: "Expense not found or unauthorized." },
+        { status: 404 }
       );
     }
 
     await prisma.expenses.delete({
-      where: { id: Number(id), clerkId: userId },
+      where: { id: Number(id) },
     });
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        message: "Expense deleted successfully.",
-      }),
-      { status: 200 },
+    return NextResponse.json(
+      { success: true, message: "Expense deleted successfully." },
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error deleting expense:", error);
-    return new Response(
-      JSON.stringify({ success: false, error: "Database error." }),
-      { status: 500 },
+    return NextResponse.json(
+      { success: false, error: "Database error." },
+      { status: 500 }
     );
   }
 }
+
