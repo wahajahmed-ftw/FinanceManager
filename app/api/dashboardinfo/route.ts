@@ -1,13 +1,28 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 
 export async function GET() {
   try {
-    const expenses = await prisma.expenses.findMany(); // Fetch all expenses
+    const { userId } = await auth(); // Get Clerk User ID
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
 
+    // Fetch expenses for the logged-in user
+    const expenses = await prisma.expenses.findMany({
+      where: { clerkId: userId },
+    });
+
+    // Fetch total income for the logged-in user
     const totalIncome = await prisma.income.aggregate({
+      where: { clerkId: userId },
       _sum: { amount: true },
     });
+
     const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
 
     // Group expenses by category
@@ -15,12 +30,14 @@ export async function GET() {
     const subcategoryExpenses: Record<string, number> = {};
 
     expenses.forEach((expense) => {
-      if (!categoryExpenses[expense.category])
+      if (!categoryExpenses[expense.category]) {
         categoryExpenses[expense.category] = 0;
+      }
       categoryExpenses[expense.category] += expense.amount;
 
-      if (!subcategoryExpenses[expense.subCategory])
+      if (!subcategoryExpenses[expense.subCategory]) {
         subcategoryExpenses[expense.subCategory] = 0;
+      }
       subcategoryExpenses[expense.subCategory] += expense.amount;
     });
 
@@ -37,7 +54,7 @@ export async function GET() {
     console.error("Error fetching expenses:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch data" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
