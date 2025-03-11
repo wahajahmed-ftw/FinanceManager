@@ -12,10 +12,8 @@ import {
 import { addIncome } from "../server";
 
 export default function IncomeFormPopup({
-  dirty,
   setDirty,
 }: {
-  dirty: boolean;
   setDirty: React.Dispatch<React.SetStateAction<boolean>>;
 }
 ) {
