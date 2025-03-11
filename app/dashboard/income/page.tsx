@@ -7,7 +7,7 @@ export default function Income() {
   const [dirty,setDirty] = useState(false)
   return (
     <div>
-      <IncomeFormPopup dirty={dirty} setDirty={setDirty}/>
+      <IncomeFormPopup setDirty={setDirty}/>
       <IncomeTable dirty={dirty} setDirty={setDirty} />
     </div>
   );
