@@ -93,7 +93,7 @@ export function MainLanding() {
                     className="text-base text-[var(--foreground)] transition-all duration-300 hover:text-opacity-80 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--success)] after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
                     variants={textPopVariants}
                   >
-                    {item}
+                  <b>{item}</b>  
                   </motion.a>
                 )
               )}

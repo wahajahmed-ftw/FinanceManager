@@ -287,7 +287,7 @@ export default function FinanceDashboard() {
 
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="p-6 rounded-2xl shadow-2xl backdrop-blur-md bg-[var(--card-bg)] text-[var(--foreground)]"
+            className="p-6 rounded-2xl shadow-2xl backdrop-blur-md bg-[var(--card-bg)] text-[var(--danger)]"
           >
             <div className="flex items-center">
               <ShoppingCart className="mr-4 h-10 w-10" />
@@ -401,12 +401,13 @@ export default function FinanceDashboard() {
                 >
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={subcategoryData}>
+                      <Tooltip cursor={false} />
                       <XAxis
                         dataKey="name"
-                        tick={{ fill: "var(--foreground)", fontSize: 14 }}
+                        tick={{ fill: "var(--foreground)", fontSize: 24 }}
                       />
                       <YAxis
-                        tick={{ fill: "var(--foreground)", fontSize: 14 }}
+                        tick={{ fill: "var(--foreground)", fontSize: 24 }}
                       />
                       <Tooltip />
                       <Legend />
