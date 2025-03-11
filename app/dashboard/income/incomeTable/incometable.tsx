@@ -30,7 +30,13 @@ interface Income {
   amount: number;
 }
 
-export default function IncomeTable() {
+export default function IncomeTable({
+  dirty,
+  setDirty, 
+}:{
+  dirty: boolean
+  setDirty: React.Dispatch<React.SetStateAction<boolean>>
+}) {
   const [incomeData, setIncomeData] = useState<Income[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +47,7 @@ export default function IncomeTable() {
 
   useEffect(() => {
     fetchIncome(selectedMonth, selectedYear);
-  }, [selectedMonth, selectedYear]);
+  }, [selectedMonth, selectedYear,dirty]);
 
   const fetchIncome = async (month: number, year: number) => {
     try {
@@ -62,6 +68,7 @@ export default function IncomeTable() {
       setError((err as Error).message);
     } finally {
       setLoading(false);
+      setDirty(false)
     }
   };
 
@@ -215,7 +222,7 @@ export default function IncomeTable() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex justify-center items-center h-screen bg-gray-900"
+        className="flex justify-center items-center h-screen bg-[var(--background)]"
       >
         <SyncLoader color="var(--foreground)" size={15} />
       </motion.div>

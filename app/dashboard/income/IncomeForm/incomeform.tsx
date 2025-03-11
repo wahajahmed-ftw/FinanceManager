@@ -11,7 +11,14 @@ import {
 } from "@/components/ui/tooltip";
 import { addIncome } from "../server";
 
-export default function IncomeFormPopup() {
+export default function IncomeFormPopup({
+  dirty,
+  setDirty,
+}: {
+  dirty: boolean;
+  setDirty: React.Dispatch<React.SetStateAction<boolean>>;
+}
+) {
   const [isOpen, setIsOpen] = useState(false);
   const [incomeData, setIncomeData] = useState({
     source: "Job",
@@ -28,6 +35,7 @@ export default function IncomeFormPopup() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setDirty(true)
     e.preventDefault();
     setLoading(true);
     setMessage("");
@@ -74,7 +82,7 @@ export default function IncomeFormPopup() {
               bg-[var(--primary)] text-var[(--primary-foreground)] 
               w-16 h-16 rounded-full flex items-center justify-center 
               shadow-2xl hover:bg-var[(--button-danger-hover)] 
-              transition-colors cursor-pointer"
+              transition-colors cursor-pointer z-50"
             >
               <Plus size={32} />
             </motion.button>

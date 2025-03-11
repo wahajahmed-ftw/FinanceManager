@@ -10,7 +10,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-export default function ExpenseFormPopup() {
+export default function ExpenseFormPopup({
+  setDirty,
+}: {
+  setDirty: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     amount: "",
@@ -34,6 +38,7 @@ export default function ExpenseFormPopup() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setDirty(true)
     e.preventDefault();
     setLoading(true);
 
@@ -80,7 +85,7 @@ export default function ExpenseFormPopup() {
               bg-[var(--primary)] text-var[(--primary-foreground)] 
               w-16 h-16 rounded-full flex items-center justify-center 
               shadow-2xl hover:bg-var[(--button-danger-hover)] 
-              transition-colors cursor-pointer"
+              transition-colors cursor-pointer z-50"
             >
               <Plus size={32} />
             </motion.button>

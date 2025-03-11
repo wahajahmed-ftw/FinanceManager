@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { setDefaultHighWaterMark } from "stream";
 
 // Register AG Grid modules
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -46,7 +47,9 @@ const categories: Record<string, string[]> = {
   Utilities: ["Electricity", "Water", "Internet"],
 };
 
-export default function ExpenseTable() {
+export default function ExpenseTable(
+  { dirty, setDirty }: { dirty: boolean; setDirty: React.Dispatch<React.SetStateAction<boolean>> }
+) {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -58,6 +61,7 @@ export default function ExpenseTable() {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
+        setDirty(false)
         setLoading(true);
         const response = await fetch(
           `/api/expenses?month=${selectedMonth}&year=${selectedYear}`
@@ -79,7 +83,7 @@ export default function ExpenseTable() {
     if (selectedMonth && selectedYear) {
       fetchExpenses();
     }
-  }, [selectedMonth, selectedYear]);
+  }, [selectedMonth, selectedYear,dirty]);
 
   // ✅ Delete Expense Function
   const handleDelete = async (id: number) => {
@@ -171,7 +175,7 @@ export default function ExpenseTable() {
 
   const columnDefs: ColDef<Expense>[] = [
     {
-      headerName: "ID",
+      headerName: "Serial No.",
       valueGetter: (params: ValueGetterParams<Expense, unknown>) => {
         return params.node?.rowIndex != null ? params.node.rowIndex + 1 : "";
       },
@@ -236,7 +240,7 @@ export default function ExpenseTable() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex justify-center items-center h-screen bg-gray-900"
+        className="flex justify-center items-center h-screen bg-[var(--background)]"
       >
         <SyncLoader color="var(--foreground)" size={15} />{" "}
       </motion.div>
