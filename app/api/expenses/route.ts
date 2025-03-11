@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma"; // Ensure the correct Prisma import
+import { Prisma } from "@prisma/client";
 
 export async function GET(req: Request) {
   try {
@@ -13,7 +14,7 @@ export async function GET(req: Request) {
     const month = Number(url.searchParams.get("month")); // Get month from query params
     const year = Number(url.searchParams.get("year")); // Get year from query params
 
-    let whereClause: any = { clerkId: userId };
+    const whereClause: Prisma.ExpensesWhereInput = { clerkId: userId };
 
     if (month && year) {
       whereClause.date = {
