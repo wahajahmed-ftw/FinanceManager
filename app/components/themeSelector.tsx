@@ -28,7 +28,7 @@ export default function ThemeToggle() {
               animate={{ rotate: theme === "grey" ? 0 : 360 }}
               transition={{ type: "spring", stiffness: 200, damping: 10 }}
             >
-              {theme === "grey" ? <Sun size={22} /> : <Moon size={22} />}
+              {theme === "grey" ?<Moon size={22} />: <Sun size={22} />}
             </motion.div>
           </motion.button>
         </TooltipTrigger>

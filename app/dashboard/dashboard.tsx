@@ -22,6 +22,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Wallet, ShoppingCart, Car, Zap } from "lucide-react";
 import SyncLoader from "react-spinners/SyncLoader";
 import { Button } from "@/components/ui/button";
@@ -52,22 +60,23 @@ const CATEGORIES: Record<string, CategoryDetails> = {
   Food: {
     name: "Food",
     icon: ShoppingCart,
-    color: "#ff3021",
+    color: "var(--food-color)", // Warm orange-red for food
     subcategories: ["Groceries", "Restaurants", "Fast Food"],
   },
   Transport: {
     name: "Transport",
     icon: Car,
-    color: "#21c4ff",
+    color: "var(--transport-color)", // Teal-blue for transport
     subcategories: ["Fuel", "Public Transport", "Taxi"],
   },
   Utilities: {
     name: "Utilities",
     icon: Zap,
-    color: "#72ff21",
+    color: "var(--utilities-color)", // Golden yellow for utilities
     subcategories: ["Electricity", "Water", "Internet"],
   },
 };
+
 const categories = Object.keys(CATEGORIES);
 
 export default function FinanceDashboard() {
@@ -76,12 +85,23 @@ export default function FinanceDashboard() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedMonth, setSelectedMonth] = useState<number>(
+    new Date().getMonth() + 1
+  );
+  const [selectedYear, setSelectedYear] = useState<number>(
+    new Date().getFullYear()
+  );
 
   // Fetch finance data
   useEffect(() => {
     const fetchFinanceData = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const res = await fetch("/api/dashboardinfo");
+        const res = await fetch(
+          `/api/dashboardinfo?month=${selectedMonth}&year=${selectedYear}`
+        );
         if (!res.ok) throw new Error("Failed to fetch financial data");
 
         const json = await res.json();
@@ -94,7 +114,7 @@ export default function FinanceDashboard() {
     };
 
     fetchFinanceData();
-  }, []);
+  }, [selectedMonth, selectedYear]);
 
   // Prepare category chart data
   const prepareCategoryData = (): ChartDataItem[] => {
@@ -180,6 +200,50 @@ export default function FinanceDashboard() {
         animate="visible"
         className="w-full mx-auto"
       >
+        <motion.div
+          variants={itemVariants}
+          className="flex justify-center mb-6 space-x-4"
+        >
+          <div className="flex center justify-center gap-10 text-[var(--foreground)]">
+            {/* Month Selector */}
+            <Select
+              onValueChange={(value) => setSelectedMonth(Number(value))}
+              value={String(selectedMonth)}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Month" />
+              </SelectTrigger>
+              <SelectContent className="text-[var(--foreground)] bg-[var(--background)]">
+                {Array.from({ length: 12 }, (_, i) => (
+                  <SelectItem key={i + 1} value={String(i + 1)}>
+                    {new Date(0, i).toLocaleString("en", { month: "long" })}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Year Selector */}
+            <Select
+              onValueChange={(value) => setSelectedYear(Number(value))}
+              value={String(selectedYear)}
+            >
+              <SelectTrigger className="w-[120px]">
+                <SelectValue placeholder="Select Year" />
+              </SelectTrigger>
+              <SelectContent className="text-[var(--foreground)] bg-[var(--background)]">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <SelectItem
+                    key={i}
+                    value={String(new Date().getFullYear() - i)}
+                  >
+                    {new Date().getFullYear() - i}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </motion.div>
+
         <motion.h1
           variants={itemVariants}
           className="text-4xl font-bold text-center mb-8 tracking-tight"

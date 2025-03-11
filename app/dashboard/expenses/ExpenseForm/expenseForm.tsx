@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, X, DollarSign, Calendar, Layers } from "lucide-react";
+import { Plus, X, DollarSign, Calendar, Layers, Tag } from "lucide-react";
 import { addExpense } from "../server";
 import {
   Tooltip,
@@ -97,7 +97,7 @@ export default function ExpenseFormPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center 
-      bg-[var(--foreground)]/30 backdrop-blur-sm"
+bg-[var(--foreground)]/30 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           >
             {/* Popup Container */}
@@ -112,14 +112,14 @@ export default function ExpenseFormPopup() {
               }}
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-md bg-[var(--card-bg)]/80 
-        backdrop-blur-lg rounded-2xl shadow-2xl p-6 
-        relative border border-[var(--border)]/10"
+  backdrop-blur-lg rounded-2xl shadow-2xl p-6 
+  relative border border-[var(--border)]/10"
             >
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-4 right-4 text-[var(--muted-foreground)] 
-          hover:text-[var(--foreground)] transition-colors"
+    hover:text-[var(--foreground)] transition-colors"
               >
                 <X size={24} />
               </button>
@@ -127,8 +127,8 @@ export default function ExpenseFormPopup() {
               {/* Form Title */}
               <h2
                 className="text-2xl font-bold mb-6 text-center 
-        text-[var(--foreground)] flex items-center 
-        justify-center gap-2"
+  text-[var(--foreground)] flex items-center 
+  justify-center gap-2"
               >
                 <DollarSign className="text-[var(--primary)]" />
                 Add Expense
@@ -153,14 +153,14 @@ export default function ExpenseFormPopup() {
                       required
                       placeholder="Enter amount"
                       className="w-full p-3 pl-10 border rounded-lg 
-                bg-[var(--background)]/70 text-[var(--foreground)] 
-                border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
-                transition-all"
+          bg-[var(--background)]/70 text-[var(--foreground)] 
+          border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
+          transition-all"
                     />
                     <div
                       className="pointer-events-none absolute 
-              inset-y-0 left-0 flex items-center px-3 
-              text-[var(--muted-foreground)]"
+        inset-y-0 left-0 flex items-center px-3 
+        text-[var(--muted-foreground)]"
                     >
                       <DollarSign size={20} />
                     </div>
@@ -181,14 +181,14 @@ export default function ExpenseFormPopup() {
                       onChange={handleChange}
                       required
                       className="w-full p-3 pr-10 border rounded-lg 
-                bg-[var(--background)]/70 text-[var(--foreground)] 
-                border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
-                transition-all"
+          bg-[var(--background)]/70 text-[var(--foreground)] 
+          border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
+          transition-all"
                     />
                     <div
                       className="pointer-events-none absolute 
-              inset-y-0 right-0 flex items-center px-3 
-              text-[var(--muted-foreground)]"
+        inset-y-0 right-0 flex items-center px-3 
+        text-[var(--muted-foreground)]"
                     >
                       <Calendar size={20} />
                     </div>
@@ -213,9 +213,9 @@ export default function ExpenseFormPopup() {
                         });
                       }}
                       className="w-full p-3 pr-10 border rounded-lg 
-                bg-[var(--background)]/70 text-[var(--foreground)] 
-                border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
-                transition-all"
+          bg-[var(--background)]/70 text-[var(--foreground)] 
+          border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
+          transition-all"
                     >
                       {Object.keys(categories).map((cat) => (
                         <option key={cat} value={cat}>
@@ -225,10 +225,42 @@ export default function ExpenseFormPopup() {
                     </select>
                     <div
                       className="pointer-events-none absolute 
-              inset-y-0 right-0 flex items-center px-3 
-              text-[var(--muted-foreground)]"
+        inset-y-0 right-0 flex items-center px-3 
+        text-[var(--muted-foreground)]"
                     >
                       <Layers size={20} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Subcategory Dropdown */}
+                <div className="relative">
+                  <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2 font-bold">
+                    <Tag size={16} className="text-[var(--primary)]" />
+                    Subcategory
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="subcategory"
+                      value={formData.subcategory}
+                      onChange={handleChange}
+                      className="w-full p-3 pr-10 border rounded-lg 
+          bg-[var(--background)]/70 text-[var(--foreground)] 
+          border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
+          transition-all"
+                    >
+                      {categories[formData.category].map((subcat) => (
+                        <option key={subcat} value={subcat}>
+                          {subcat}
+                        </option>
+                      ))}
+                    </select>
+                    <div
+                      className="pointer-events-none absolute 
+        inset-y-0 right-0 flex items-center px-3 
+        text-[var(--muted-foreground)]"
+                    >
+                      <Tag size={20} />
                     </div>
                   </div>
                 </div>
@@ -240,12 +272,12 @@ export default function ExpenseFormPopup() {
                   type="submit"
                   disabled={loading}
                   className="w-full p-3 rounded-lg bg-[var(--primary)] 
-            text-[var(--primary-foreground)] font-semibold 
-            hover:bg-[var(--button-primary-hover)] focus:outline-none 
-            focus:ring-2 focus:ring-[var(--button-primary-hover)] 
-            focus:ring-offset-2 transition-all 
-            disabled:opacity-50 disabled:cursor-not-allowed 
-            flex items-center justify-center gap-2"
+      text-[var(--primary-foreground)] font-semibold 
+      hover:bg-[var(--button-primary-hover)] focus:outline-none 
+      focus:ring-2 focus:ring-[var(--button-primary-hover)] 
+      focus:ring-offset-2 transition-all 
+      disabled:opacity-50 disabled:cursor-not-allowed 
+      flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>

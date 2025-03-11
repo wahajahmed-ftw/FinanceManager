@@ -13,16 +13,8 @@ export async function PUT(req: NextRequest) {
     }
 
     const { source, amount, date } = await req.json();
-        // Extract the ID from the request URL
-        const id = req.nextUrl.pathname.split("/").pop();
-        if (!id) {
-          return NextResponse.json(
-            { success: false, error: "Invalid expense ID." },
-            { status: 400 }
-          );
-        }
+    const id = req.nextUrl.pathname.split("/").pop();
     
-
     if (!id || !source || isNaN(amount) || !date) {
       return new Response(
         JSON.stringify({ success: false, error: "Invalid input data." }),
@@ -30,27 +22,12 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // Convert DD/MM/YYYY to ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ)
-    const dateParts = date.split("/");
-    if (dateParts.length !== 3) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Invalid date format. Expected DD/MM/YYYY.",
-        }),
-        { status: 400 },
-      );
-    }
-
-    const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}T00:00:00.000Z`; // Converts to UTC
-    const parsedDate = new Date(formattedDate);
+    // ✅ Fix: No need to manually parse DD/MM/YYYY. The frontend already sends YYYY-MM-DD.
+    const parsedDate = new Date(date);
 
     if (isNaN(parsedDate.getTime())) {
       return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Invalid date format after conversion.",
-        }),
+        JSON.stringify({ success: false, error: "Invalid date format." }),
         { status: 400 },
       );
     }
@@ -88,6 +65,7 @@ export async function PUT(req: NextRequest) {
     );
   }
 }
+
 
 export async function DELETE(req: NextRequest,) {
   try {

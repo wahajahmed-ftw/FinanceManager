@@ -323,7 +323,7 @@ export function MainLanding() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Over <NumberTicker value={12000} delay={0.2} /> Users
+                  Over <NumberTicker value={20000} delay={0.2} /> Users
                 </motion.p>
               </motion.div>
 

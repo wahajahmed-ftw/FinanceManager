@@ -32,15 +32,8 @@ export async function PUT(req: NextRequest) {
     }
 
     // Convert DD/MM/YYYY to YYYY-MM-DD
-    const dateParts = date.split("/");
-    if (dateParts.length !== 3) {
-      return NextResponse.json(
-        { success: false, error: "Invalid date format. Expected DD/MM/YYYY." },
-        { status: 400 }
-      );
-    }
-    const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // YYYY-MM-DD
-    const parsedDate = new Date(formattedDate);
+  
+    const parsedDate = new Date(date);
 
     if (isNaN(parsedDate.getTime())) {
       return NextResponse.json(

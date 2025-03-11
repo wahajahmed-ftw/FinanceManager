@@ -122,6 +122,10 @@ body {
   --color-select-bg: var(--muted);
   --color-border: var(--border);
   --color-card-bg: var(--card-bg);
+
+  --food-color: rgb(255, 100, 70); /* Warm orange-red */
+  --transport-color: rgb(70, 150, 255); /* Vibrant teal-blue */
+  --utilities-color: rgb(255, 210, 80); /* Golden yellow */
 }
 
 .grey {
@@ -177,6 +181,10 @@ body {
   /* Form & Borders */
   --color-select-bg: var(--muted);
   --color-border: var(--border);
+
+  --food-color: rgb(200, 80, 60); /* Slightly muted warm red */
+  --transport-color: rgb(90, 130, 200); /* Softer blue */
+  --utilities-color: rgb(220, 180, 70); /* Softer golden */
 }
 
 /* Animation Keyframes */

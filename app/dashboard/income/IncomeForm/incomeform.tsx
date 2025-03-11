@@ -132,8 +132,8 @@ export default function IncomeFormPopup() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Income Source */}
                 <div className="relative">
-                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
-                    <Layers size={16} className="text-[var(--primary)]" />
+                  <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2">
+                    <Layers size={16} className="text-[var(--foreground)]" />
                     Income Source
                   </label>
                   <div className="relative">
@@ -165,38 +165,38 @@ export default function IncomeFormPopup() {
                 </div>
 
                 {/* Date Input */}
-                <div className="relative">
-                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
-                    <Calendar size={16} className="text-[var(--primary)]" />
-                    Date
-                  </label>
                   <div className="relative">
-                    <input
-                      type="date"
-                      name="date"
-                      value={incomeData.date}
-                      onChange={handleChange}
-                      required
-                      className="w-full p-3 pr-10 border rounded-lg 
-                        bg-[var(--color-select-bg)]
-                        text-[var(--foreground)]
-                        border-[var(--border)] 
-                        focus:ring-2 focus:ring-[var(--ring)] 
-                        transition-all"
-                    />
-                    <div
-                      className="pointer-events-none absolute 
-                      inset-y-0 right-0 flex items-center px-3 
-                      text-[var(--muted-foreground)]"
-                    >
-                      <Calendar size={20} />
+                    <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2">
+                      <Calendar size={16} className="text-[var(--primary)]" />
+                      Date
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="date"
+                        name="date"
+                        value={incomeData.date}
+                        onChange={handleChange}
+                        required
+                        className="w-full p-3 pr-10 border rounded-lg 
+                          bg-[var(--color-select-bg)]
+                          text-[var(--foreground)]
+                          border-[var(--border)] 
+                          focus:ring-2 focus:ring-[var(--ring)] 
+                          transition-all"
+                      />
+                      <div
+                        className="pointer-events-none absolute 
+                        inset-y-0 right-0 flex items-center px-3 
+                        text-[var(--muted-foreground)]"
+                      >
+                        <Calendar size={20} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
                 {/* Amount Input */}
                 <div className="relative">
-                  <label className="block mb-2 text-[var(--muted-foreground)] flex items-center gap-2">
+                  <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2">
                     <DollarSign size={16} className="text-[var(--primary)]" />
                     Amount
                   </label>
