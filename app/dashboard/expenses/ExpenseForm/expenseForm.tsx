@@ -38,7 +38,7 @@ export default function ExpenseFormPopup({
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    setDirty(true)
+    setDirty(true);
     e.preventDefault();
     setLoading(true);
 
@@ -154,7 +154,7 @@ bg-[var(--foreground)]/30 backdrop-blur-sm"
                       value={formData.amount}
                       onChange={handleChange}
                       min="0"
-                      step="0.01"
+                      step="10"
                       required
                       placeholder="Enter amount"
                       className="w-full p-3 pl-10 border rounded-lg 
@@ -175,7 +175,10 @@ bg-[var(--foreground)]/30 backdrop-blur-sm"
                 {/* Date Input */}
                 <div className="relative">
                   <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2 font-bold">
-                    <Calendar size={16} className="text-[var(--primary)]" />
+                    <Calendar
+                      size={16}
+                      className="text-[var(--primary)] align-end"
+                    />
                     Date
                   </label>
                   <div className="relative">
@@ -185,6 +188,7 @@ bg-[var(--foreground)]/30 backdrop-blur-sm"
                       value={formData.date}
                       onChange={handleChange}
                       required
+                      max={new Date().toISOString().split("T")[0]}
                       className="w-full p-3 pr-10 border rounded-lg 
           bg-[var(--background)]/70 text-[var(--foreground)] 
           border-[var(--border)] focus:ring-2 focus:ring-[var(--danger)] 
@@ -194,9 +198,7 @@ bg-[var(--foreground)]/30 backdrop-blur-sm"
                       className="pointer-events-none absolute 
         inset-y-0 right-0 flex items-center px-3 
         text-[var(--muted-foreground)]"
-                    >
-                      <Calendar size={20} />
-                    </div>
+                    ></div>
                   </div>
                 </div>
 

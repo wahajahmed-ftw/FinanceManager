@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
-import { X, DollarSign, Calendar, Layers } from "lucide-react";
+import { X, DollarSign, Calendar, Layers, Save } from "lucide-react";
 import { ClientSideRowModelModule, ModuleRegistry } from "ag-grid-community";
 
 // Import AG Grid styles
@@ -413,6 +413,7 @@ export default function IncomeTable({
                           editingIncome?.date.split("/").reverse().join("-") ||
                           ""
                         }
+                        max={new Date().toISOString().split("T")[0]}
                         onChange={(e) =>
                           setEditingIncome({
                             ...editingIncome!,
@@ -447,7 +448,7 @@ export default function IncomeTable({
                           })
                         }
                         min="0"
-                        step="0.01"
+                        step="10"
                         required
                         placeholder="Enter amount"
                         className="w-full p-3 border rounded-lg 

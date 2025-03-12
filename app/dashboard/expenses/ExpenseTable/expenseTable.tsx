@@ -46,9 +46,13 @@ const categories: Record<string, string[]> = {
   Utilities: ["Electricity", "Water", "Internet"],
 };
 
-export default function ExpenseTable(
-  { dirty, setDirty }: { dirty: boolean; setDirty: React.Dispatch<React.SetStateAction<boolean>> }
-) {
+export default function ExpenseTable({
+  dirty,
+  setDirty,
+}: {
+  dirty: boolean;
+  setDirty: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -60,7 +64,7 @@ export default function ExpenseTable(
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        setDirty(false)
+        setDirty(false);
         setLoading(true);
         const response = await fetch(
           `/api/expenses?month=${selectedMonth}&year=${selectedYear}`
@@ -82,7 +86,7 @@ export default function ExpenseTable(
     if (selectedMonth && selectedYear) {
       fetchExpenses();
     }
-  }, [selectedMonth, selectedYear,dirty]);
+  }, [selectedMonth, selectedYear, dirty]);
 
   // ✅ Delete Expense Function
   const handleDelete = async (id: number) => {
@@ -355,6 +359,7 @@ export default function ExpenseTable(
             {isEditModalOpen && selectedExpense && (
               <Dialog
                 open={isEditModalOpen}
+                onClick={() => setIsEditModalOpen(false)}
                 onClose={() => setIsEditModalOpen(false)}
                 className="fixed inset-0 z-50 flex items-center justify-center"
               >
@@ -364,6 +369,7 @@ export default function ExpenseTable(
                   exit={{ opacity: 0 }}
                   className="fixed inset-0 bg-[var(--foreground)]/70 backdrop-blur-sm"
                 />
+                 
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -371,6 +377,13 @@ export default function ExpenseTable(
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="relative bg-[var(--card-bg)] rounded-2xl shadow-2xl w-96 p-6 max-w-md mx-auto"
                 >
+                  <button
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="absolute top-4 right-4 text-[var(--muted-foreground)] 
+                  hover:text-[var(--foreground)] transition-colors"
+                >
+                  <X size={24} />
+                </button>
                   <Dialog.Title className="text-2xl font-bold text-[var(--foreground)] mb-6 text-center flex items-center justify-center gap-2">
                     <EditIcon className="text-[var(--primary)]" size={24} />
                     Edit Expense
@@ -468,7 +481,7 @@ export default function ExpenseTable(
                             })
                           }
                           min="0"
-                          step="0.01"
+                          step="10"
                           className="w-full px-4 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--background)]/70 text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--danger)] transition-all"
                         />
                         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-[var(--muted-foreground)]">
@@ -489,6 +502,7 @@ export default function ExpenseTable(
                       <div className="relative">
                         <input
                           type="date"
+                          max={new Date().toISOString().split("T")[0]}
                           value={selectedExpense.date}
                           onChange={(e) =>
                             setSelectedExpense({
@@ -498,9 +512,7 @@ export default function ExpenseTable(
                           }
                           className="w-full px-4 py-2 pr-10 border border-[var(--border)] rounded-lg bg-[var(--background)]/70 text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--danger)] transition-all"
                         />
-                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[var(--muted-foreground)]">
-                          <Calendar size={20} />
-                        </div>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[var(--muted-foreground)]"></div>
                       </div>
                     </motion.div>
                   </div>
@@ -512,7 +524,6 @@ export default function ExpenseTable(
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 bg-[var(--muted)] text-[var(--foreground)] py-2 rounded-lg hover:bg-[var(--muted-foreground)]/10 transition duration-300 flex items-center justify-center gap-2"
                     >
-                      <X size={16} />
                       Cancel
                     </motion.button>
                     <motion.button
@@ -521,7 +532,6 @@ export default function ExpenseTable(
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 bg-[var(--primary)] text-[var(--primary-foreground)] py-2 rounded-lg hover:bg-[var(--button-primary-hover)] transition duration-300 flex items-center justify-center gap-2"
                     >
-                      <Save size={16} />
                       Save
                     </motion.button>
                   </div>

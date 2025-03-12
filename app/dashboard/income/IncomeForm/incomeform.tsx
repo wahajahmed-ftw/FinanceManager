@@ -15,8 +15,7 @@ export default function IncomeFormPopup({
   setDirty,
 }: {
   setDirty: React.Dispatch<React.SetStateAction<boolean>>;
-}
-) {
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [incomeData, setIncomeData] = useState({
     source: "Job",
@@ -27,13 +26,13 @@ export default function IncomeFormPopup({
   const [message, setMessage] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setIncomeData({ ...incomeData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    setDirty(true)
+    setDirty(true);
     e.preventDefault();
     setLoading(true);
     setMessage("");
@@ -171,34 +170,33 @@ export default function IncomeFormPopup({
                 </div>
 
                 {/* Date Input */}
+                <div className="relative">
+                  <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2">
+                    <Calendar size={16} className="text-[var(--primary)]" />
+                    Date
+                  </label>
                   <div className="relative">
-                    <label className="block mb-2 text-[var(--foreground)] flex items-center gap-2">
-                      <Calendar size={16} className="text-[var(--primary)]" />
-                      Date
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="date"
-                        name="date"
-                        value={incomeData.date}
-                        onChange={handleChange}
-                        required
-                        className="w-full p-3 pr-10 border rounded-lg 
+                    <input
+                      type="date"
+                      name="date"
+                      value={incomeData.date}
+                      onChange={handleChange}
+                      max={new Date().toISOString().split("T")[0]}
+                      required
+                      className="w-full p-3 pr-10 border rounded-lg 
                           bg-[var(--color-select-bg)]
                           text-[var(--foreground)]
                           border-[var(--border)] 
                           focus:ring-2 focus:ring-[var(--ring)] 
                           transition-all"
-                      />
-                      <div
-                        className="pointer-events-none absolute 
+                    />
+                    <div
+                      className="pointer-events-none absolute 
                         inset-y-0 right-0 flex items-center px-3 
                         text-[var(--muted-foreground)]"
-                      >
-                        <Calendar size={20} />
-                      </div>
-                    </div>
+                    ></div>
                   </div>
+                </div>
 
                 {/* Amount Input */}
                 <div className="relative">
@@ -213,7 +211,7 @@ export default function IncomeFormPopup({
                       value={incomeData.amount}
                       onChange={handleChange}
                       min="0"
-                      step="0.01"
+                      step="10"
                       required
                       placeholder="Enter amount"
                       className="w-full p-3 pl-10 border rounded-lg 
