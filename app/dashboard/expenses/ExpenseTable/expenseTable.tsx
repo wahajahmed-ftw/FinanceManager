@@ -17,7 +17,6 @@ import {
   DollarSign,
   EditIcon,
   Layers,
-  Save,
   Tag,
   X,
 } from "lucide-react";
