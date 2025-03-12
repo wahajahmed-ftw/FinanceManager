@@ -72,23 +72,23 @@ html{
 }
 
 .dark {
-  --background: rgb(20, 20, 30);
+  --background: rgb(18, 18, 28);
   --foreground: rgb(240, 240, 250);
 
   --primary: rgb(58, 134, 255);
-  --primary-foreground: rgb(20, 20, 30);
+  --primary-foreground: rgb(240, 240, 250);
 
   --success: rgb(50, 200, 100);
-  --success-foreground: rgb(20, 20, 30);
+  --success-foreground: rgb(18, 18, 28);
 
   --warning: rgb(255, 193, 7);
-  --warning-foreground: rgb(30, 30, 30);
+  --warning-foreground: rgb(18, 18, 28);
 
   --danger: rgb(220, 53, 69);
-  --danger-foreground: rgb(240, 240, 240);
+  --danger-foreground: rgb(240, 240, 250);
 
   --muted: rgb(45, 50, 65);
-  --muted-foreground: rgb(140, 150, 160);
+  --muted-foreground: rgb(180, 190, 200);  /* Increased brightness for better contrast */
 
   --border: rgb(60, 70, 80);
   --ring: rgb(58, 134, 255);
@@ -115,84 +115,95 @@ html{
   --button-delete: rgb(220, 60, 80);
   --button-delete-hover: rgb(200, 50, 70);
 
-  --card-bg: rgb(35, 40, 55);
-  --card-bg-hover: rgb(45, 50, 65);
+  --card-bg: rgb(30, 35, 48);
+  --card-bg-hover: rgb(40, 45, 60);
 
   --color-bg-start: var(--background);
-  --color-bg-middle: rgb(40, 45, 60);
-  --color-bg-end: rgb(50, 55, 70);
+  --color-bg-middle: rgb(30, 35, 48);
+  --color-bg-end: rgb(40, 45, 60);
 
   /* Text Colors */
   --color-text: var(--foreground);
   --color-income-text: var(--success);
-  --color-balance-text: var(--primary-foreground);
+  --color-balance-text: var(--foreground);  /* Changed to foreground for better contrast */
 
   /* Form & Borders */
   --color-select-bg: var(--muted);
   --color-border: var(--border);
   --color-card-bg: var(--card-bg);
+
+  --food-color: rgb(255, 100, 70);
+  --transport-color: rgb(70, 150, 255);
+  --utilities-color: rgb(255, 210, 80);
 }
 
 .grey {
-  --background: rgb(201, 199, 199);
-  --foreground: rgb(50, 50, 50);
+  --background: rgb(230, 230, 230);  /* Lighter background */
+  --foreground: rgb(40, 40, 40);     /* Darker text for better contrast */
 
-  --primary: rgb(120, 120, 120);
+  --primary: rgb(80, 80, 80);        /* Darker primary */
   --primary-foreground: rgb(250, 250, 250);
 
-  --success: rgb(110, 180, 120);
+  --success: rgb(60, 160, 80);       /* Darker success color */
   --success-foreground: rgb(250, 250, 250);
 
-  --warning: rgb(180, 150, 80);
+  --warning: rgb(180, 140, 40);      /* Slightly darker warning */
   --warning-foreground: rgb(30, 30, 30);
 
-  --danger: rgb(160, 60, 60);
+  --danger: rgb(180, 50, 50);        /* Slightly darker danger */
   --danger-foreground: rgb(250, 250, 250);
 
-  --muted: rgb(210, 210, 210);
-  --muted-foreground: rgb(90, 90, 90);
+  --muted: rgb(200, 200, 200);
+  --muted-foreground: rgb(70, 70, 70);  /* Darker muted text */
 
-  --border: rgb(180, 180, 180);
-  --ring: rgb(120, 120, 120);
+  --border: rgb(160, 160, 160);
+  --ring: rgb(80, 80, 80);
 
   /* BUTTONS */
   --button-primary: var(--primary);
-  --button-primary-hover: rgb(100, 100, 100);
+  --button-primary-hover: rgb(60, 60, 60);
 
-  --button-secondary: var(--muted);
-  --button-secondary-hover: rgb(180, 180, 180);
+  --button-secondary: rgb(180, 180, 180);  /* Darker secondary button */
+  --button-secondary-hover: rgb(160, 160, 160);
 
   --button-success: var(--success);
-  --button-success-hover: rgb(90, 160, 100);
+  --button-success-hover: rgb(50, 140, 70);
 
   --button-warning: var(--warning);
-  --button-warning-hover: rgb(150, 130, 70);
+  --button-warning-hover: rgb(150, 120, 30);
 
   --button-danger: var(--danger);
-  --button-danger-hover: rgb(140, 50, 50);
+  --button-danger-hover: rgb(160, 40, 40);
 
   /* Edit & Delete Buttons */
-  --button-edit: rgb(100, 100, 255);
-  --button-edit-hover: rgb(90, 90, 230);
+  --button-edit: rgb(60, 100, 180);  /* Darker, more saturated blue */
+  --button-edit-hover: rgb(50, 90, 160);
   --button-delete: rgb(180, 50, 50);
-  --button-delete-hover: rgb(150, 40, 40);
+  --button-delete-hover: rgb(160, 40, 40);
 
-  --card-bg: rgb(100, 100, 100);
-  --card-bg-hover: rgb(120, 120, 120);
+  --card-bg: rgb(210, 210, 210);
+  --card-bg-hover: rgb(200, 200, 200);
 
   --color-bg-start: var(--background);
-  --color-bg-middle: rgb(180, 180, 180);
-  --color-bg-end: rgb(160, 160, 160);
+  --color-bg-middle: rgb(220, 220, 220);
+  --color-bg-end: rgb(200, 200, 200);
 
   /* Text Colors */
   --color-text: var(--foreground);
-  --color-income-text: var(--success);
-  --color-balance-text: var(--primary-foreground);
+  --color-income-text: rgb(40, 140, 60);  /* Darker green for better contrast */
+  --color-balance-text: var(--foreground);
 
   /* Form & Borders */
   --color-select-bg: var(--muted);
   --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
+
+  --food-color: rgb(180, 60, 40);      /* Deeper red */
+  --transport-color: rgb(50, 100, 180); /* Deeper blue */
+  --utilities-color: rgb(190, 150, 40); /* Deeper gold */
 }
+
+
 
 
 /* Animation Keyframes */
