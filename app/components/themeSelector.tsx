@@ -3,13 +3,6 @@
 import { useTheme } from "@/context/themeContext";
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
