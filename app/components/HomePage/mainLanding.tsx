@@ -68,14 +68,28 @@ export function MainLanding() {
               animate="visible"
               variants={logoVariants}
             >
-              <a href="#" title="" className="flex">
-                <img
-                  className="w-auto h-8"
-                  src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/5/logo.svg"
-                  alt=""
-
-                />
-              </a>
+             <motion.p
+              className="text-2xl font-bold sm:text-xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <motion.span
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--success)] to-[var(--foreground)]"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: 1,
+                  scale: [0.8, 1.05, 1],
+                  transition: {
+                    duration: 0.8,
+                    times: [0, 0.8, 1],
+                    delay: 0.8,
+                  },
+                }}
+              >
+                Finance Manager
+              </motion.span>
+            </motion.p>
             </motion.div>
 
             <motion.div
@@ -93,14 +107,14 @@ export function MainLanding() {
                     className="text-base text-[var(--foreground)] transition-all duration-300 hover:text-opacity-80 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--success)] after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
                     variants={textPopVariants}
                   >
-                  <b>{item}</b>  
+                    <b>{item}</b>
                   </motion.a>
                 )
               )}
             </motion.div>
 
             <motion.div
-              className="lg:flex lg:items-center lg:justify-end lg:space-x-6 sm:ml-auto"
+              className="flex items-center justify-end space-x-6 flex-wrap sm:flex-nowrap"
               initial="hidden"
               animate="visible"
               variants={containerVariants}
@@ -108,47 +122,6 @@ export function MainLanding() {
               <ThemeToggle />
               <AnimatedSignInButton />
             </motion.div>
-
-            <motion.button
-              type="button"
-              className="inline-flex p-2 ml-1 text-[var(--foreground)] transition-all duration-200 rounded-md sm:ml-4 lg:hidden focus:bg-[var(--muted-foreground)] hover:bg-[var(--muted-foreground)]"
-              variants={textPopVariants}
-              initial="hidden"
-              animate="visible"
-              whileTap={{ scale: 0.95 }}
-            >
-              {/* <!-- Menu open: "hidden", Menu closed: "block" --> */}
-              <svg
-                className="block w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-
-              {/* <!-- Menu open: "block", Menu closed: "hidden" --> */}
-              <svg
-                className="hidden w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </motion.button>
           </div>
         </div>
       </header>

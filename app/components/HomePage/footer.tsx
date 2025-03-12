@@ -22,12 +22,11 @@ const Footer = () => {
           >
             <div className="w-6 h-6 bg-[var(--warning)] rounded-sm"></div>
             <h2 className="text-xl font-bold text-[var(--foreground)]">
-              Postcrafts
+              Finance Manager
             </h2>
           </motion.div>
           <p className="text-[var(--muted-foreground)]">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus eius earum facilis asperiores consectetur.
           </p>
           <motion.button
             whileHover={{ scale: 1.1 }}

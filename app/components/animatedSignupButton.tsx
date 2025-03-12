@@ -62,7 +62,7 @@ const AnimatedSignInButton = () => {
                 damping: 20,
               }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-[90%] max-w-4xl h-[80vh] bg-[var(--card-bg)] rounded-2xl overflow-hidden shadow-2xl flex"
+              className="relative w-[90%] max-w-4xl h-[80vh] bg-[var(--card-bg)] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
               ref={modalRef}
             >
               {/* Close Button */}
@@ -73,15 +73,15 @@ const AnimatedSignInButton = () => {
                 <X size={24} />
               </button>
 
-              {/* Left Side: Sign-In Form */}
-              <div className="w-1/2 p-8 flex items-center justify-center">
-                <div className="w-full max-w-md">
+              {/* Sign-In Form - Takes Full Width on Small Screens */}
+              <div className="w-full lg:w-1/2 p-8 flex items-center justify-center">
+                <div className="w-full max-w-lg">
                   <SignIn />
                 </div>
               </div>
 
-              {/* Right Side: Branding */}
-              <div className="w-1/2 bg-[var(--primary)] relative flex items-center justify-center">
+              {/* Right Side: Branding (Hidden on Small Screens) */}
+              <div className="hidden lg:flex w-1/2 bg-[var(--primary)] relative items-center justify-center">
                 <div className="absolute top-8 left-8 text-3xl font-bold text-[var(--primary-foreground)]">
                   Finance Manager
                 </div>
@@ -94,6 +94,7 @@ const AnimatedSignInButton = () => {
                   </p>
                 </div>
               </div>
+
               <BorderBeam duration={8} size={300} />
             </motion.div>
           </motion.div>
