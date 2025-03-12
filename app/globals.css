@@ -109,12 +109,18 @@ html{
   --button-danger: var(--danger);
   --button-danger-hover: rgb(200, 45, 60);
 
-  --card-bg: rgb(35, 40, 55); /* Darker navy-gray for consistency */
+  /* Edit & Delete Buttons */
+  --button-edit: rgb(80, 150, 255);
+  --button-edit-hover: rgb(65, 135, 240);
+  --button-delete: rgb(220, 60, 80);
+  --button-delete-hover: rgb(200, 50, 70);
+
+  --card-bg: rgb(35, 40, 55);
   --card-bg-hover: rgb(45, 50, 65);
 
   --color-bg-start: var(--background);
-  --color-bg-middle: rgb(40, 45, 60); /* Subtle dark transition */
-  --color-bg-end: rgb(50, 55, 70); /* Darker navy-gray */
+  --color-bg-middle: rgb(40, 45, 60);
+  --color-bg-end: rgb(50, 55, 70);
 
   /* Text Colors */
   --color-text: var(--foreground);
@@ -125,10 +131,6 @@ html{
   --color-select-bg: var(--muted);
   --color-border: var(--border);
   --color-card-bg: var(--card-bg);
-
-  --food-color: rgb(255, 100, 70); /* Warm orange-red */
-  --transport-color: rgb(70, 150, 255); /* Vibrant teal-blue */
-  --utilities-color: rgb(255, 210, 80); /* Golden yellow */
 }
 
 .grey {
@@ -169,12 +171,18 @@ html{
   --button-danger: var(--danger);
   --button-danger-hover: rgb(140, 50, 50);
 
-  --card-bg: rgb(100, 100, 100); /* Neutral mid-tone gray */
+  /* Edit & Delete Buttons */
+  --button-edit: rgb(100, 100, 255);
+  --button-edit-hover: rgb(90, 90, 230);
+  --button-delete: rgb(180, 50, 50);
+  --button-delete-hover: rgb(150, 40, 40);
+
+  --card-bg: rgb(100, 100, 100);
   --card-bg-hover: rgb(120, 120, 120);
 
   --color-bg-start: var(--background);
-  --color-bg-middle: rgb(180, 180, 180); /* Mid-tone for smooth transition */
-  --color-bg-end: rgb(160, 160, 160); /* Darker shade for depth */
+  --color-bg-middle: rgb(180, 180, 180);
+  --color-bg-end: rgb(160, 160, 160);
 
   /* Text Colors */
   --color-text: var(--foreground);
@@ -184,11 +192,8 @@ html{
   /* Form & Borders */
   --color-select-bg: var(--muted);
   --color-border: var(--border);
-
-  --food-color: rgb(200, 80, 60); /* Slightly muted warm red */
-  --transport-color: rgb(90, 130, 200); /* Softer blue */
-  --utilities-color: rgb(220, 180, 70); /* Softer golden */
 }
+
 
 /* Animation Keyframes */
 @keyframes marquee {

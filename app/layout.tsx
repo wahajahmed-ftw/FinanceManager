@@ -36,7 +36,7 @@ export default function RootLayout({
             <SignedIn>
               <div className="flex">
                 <Sidebar />
-                <main className="flex-1 p-4 overflow-hidden bg-[var(--background)]">
+                <main className="flex-1 p-4 overflow-hidden bg-[var(--background)] scroll-smooth">
                   {children}
                 </main>
               </div>

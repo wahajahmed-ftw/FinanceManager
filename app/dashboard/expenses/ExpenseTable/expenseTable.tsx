@@ -217,13 +217,13 @@ export default function ExpenseTable(
         <div className="flex gap-2">
           <button
             onClick={() => handleEdit(params.data)}
-            className="bg-blue-700 text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            className="bg-[var(--button-edit)] text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float px-4"
           >
             Edit
           </button>
           <button
             onClick={() => handleDelete(params.data.id)}
-            className="bg-red-700 text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            className="bg-[var(--button-delete)] text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float"
           >
             Delete
           </button>

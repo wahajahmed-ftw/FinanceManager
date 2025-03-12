@@ -32,10 +32,10 @@ interface Income {
 
 export default function IncomeTable({
   dirty,
-  setDirty, 
-}:{
-  dirty: boolean
-  setDirty: React.Dispatch<React.SetStateAction<boolean>>
+  setDirty,
+}: {
+  dirty: boolean;
+  setDirty: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [incomeData, setIncomeData] = useState<Income[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +47,7 @@ export default function IncomeTable({
 
   useEffect(() => {
     fetchIncome(selectedMonth, selectedYear);
-  }, [selectedMonth, selectedYear,dirty]);
+  }, [selectedMonth, selectedYear, dirty]);
 
   const fetchIncome = async (month: number, year: number) => {
     try {
@@ -68,7 +68,7 @@ export default function IncomeTable({
       setError((err as Error).message);
     } finally {
       setLoading(false);
-      setDirty(false)
+      setDirty(false);
     }
   };
 
@@ -166,9 +166,6 @@ export default function IncomeTable({
       sortable: true,
       filter: true,
       resizable: true,
-      headerClass: "!text-gray-200 font-semibold",
-      cellClass:
-        "text-gray-300 hover:bg-gray-700 transition-colors duration-200",
     },
     {
       field: "date",
@@ -176,9 +173,6 @@ export default function IncomeTable({
       sortable: true,
       filter: "agDateColumnFilter",
       resizable: true,
-      headerClass: "!text-gray-200 font-semibold",
-      cellClass:
-        "text-gray-300 hover:bg-gray-700 transition-colors duration-200",
     },
     {
       field: "amount",
@@ -186,9 +180,6 @@ export default function IncomeTable({
       sortable: true,
       filter: true,
       resizable: true,
-      headerClass: "!text-gray-200 font-semibold",
-      cellClass:
-        "text-gray-300 font-medium hover:bg-gray-700 transition-colors duration-200",
       valueFormatter: (params) => `$${params.value.toLocaleString()}`,
     },
     {
@@ -197,7 +188,7 @@ export default function IncomeTable({
         <div className="flex gap-2 items-center justify-center h-full">
           <motion.button
             onClick={() => openEditDialog(params.data)}
-            className="bg-blue-700 text-white px-3  h-9  rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            className="bg-[var(--button-edit)] text-white px-3  h-9  rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float px-4"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -205,7 +196,7 @@ export default function IncomeTable({
           </motion.button>
           <motion.button
             onClick={() => handleDelete(params.data.id)}
-            className="bg-red-700 text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            className="bg-[var(--button-delete)] text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
