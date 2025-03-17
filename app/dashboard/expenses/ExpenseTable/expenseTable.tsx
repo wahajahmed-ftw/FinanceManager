@@ -17,7 +17,9 @@ import {
   DollarSign,
   EditIcon,
   Layers,
+  SquarePen,
   Tag,
+  Trash2,
   X,
 } from "lucide-react";
 import {
@@ -220,18 +222,19 @@ export default function ExpenseTable({
         <div className="flex gap-2">
           <button
             onClick={() => handleEdit(params.data)}
-            className="bg-[var(--button-edit)] text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float px-4"
+            className="bg-[var(--button-edit)] text-white px-2 sm:px-4 h-8 sm:h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float flex items-center justify-center"
           >
-            Edit
+            <SquarePen size={16} />
           </button>
           <button
             onClick={() => handleDelete(params.data.id)}
-            className="bg-[var(--button-delete)] text-white px-3 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float"
+            className="bg-[var(--button-delete)] text-white px-2 sm:px-4 h-8 sm:h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 animate-float flex items-center justify-center"
           >
-            Delete
+            <Trash2 size={16} />
           </button>
         </div>
       ),
+           
       width: 160,
       pinned: "right",
     },
@@ -273,8 +276,7 @@ export default function ExpenseTable({
 
   return (
     <div>
-      <div className="flex center justify-center gap-10 text-[var(--foreground)]">
-        {/* Month Selector */}
+      <div className="flex center mt-13 md:mt-0 justify-center gap-10 text-[var(--foreground)]">
         <Select
           onValueChange={(value) => setSelectedMonth(Number(value))}
           value={String(selectedMonth)}
@@ -291,7 +293,6 @@ export default function ExpenseTable({
           </SelectContent>
         </Select>
 
-        {/* Year Selector */}
         <Select
           onValueChange={(value) => setSelectedYear(Number(value))}
           value={String(selectedYear)}

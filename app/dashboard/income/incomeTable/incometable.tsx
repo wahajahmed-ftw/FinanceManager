@@ -3,7 +3,14 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
-import { X, DollarSign, Calendar, Layers } from "lucide-react";
+import {
+  X,
+  DollarSign,
+  Calendar,
+  Layers,
+  SquarePen,
+  Trash2,
+} from "lucide-react";
 import { ClientSideRowModelModule, ModuleRegistry } from "ag-grid-community";
 
 // Import AG Grid styles
@@ -192,7 +199,7 @@ export default function IncomeTable({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Edit
+            <SquarePen size={16} />
           </motion.button>
           <motion.button
             onClick={() => handleDelete(params.data.id)}
@@ -200,7 +207,7 @@ export default function IncomeTable({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Delete
+            <Trash2 size={16} />
           </motion.button>
         </div>
       ),
@@ -245,7 +252,7 @@ export default function IncomeTable({
 
   return (
     <div>
-      <div className="flex center justify-center gap-10 text-[var(--foreground)]">
+      <div className="flex center mt-13 justify-center gap-10 text-[var(--foreground)]">
         {/* Month Selector */}
         <Select
           onValueChange={(value) => setSelectedMonth(Number(value))}

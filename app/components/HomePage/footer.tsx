@@ -30,7 +30,7 @@ const Footer = () => {
           </p>
           <motion.button
             whileHover={{ scale: 1.1 }}
-            className="bg-[var(--primary)] text-[var(--primary-foreground)] px-6 py-2 rounded-lg shadow-md"
+            className="bg-[var(--primary)] text-[var(--primary-foreground)] px-6 py-2 cursor-pointer rounded-lg shadow-md"
           >
             Start Live Chat
           </motion.button>
